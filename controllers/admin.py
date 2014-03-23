@@ -14,3 +14,20 @@ def index():
     to decorate functions that need access control
     """
     return dict(form=auth())
+
+@auth.requires_login()
+def noticias():
+    return dict()
+
+@auth.requires_login()
+def membros():
+    return dict()
+
+@auth.requires_login()
+def projeto():
+    return dict()
+
+@auth.requires_login()
+def eventos():
+    return dict()
+

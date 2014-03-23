@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 
 def index():
-    response.flash = T("Welcome to web2py!")
-    return dict(message=T('Hello World'))
+    return dict()
+
+def membros():
+    return dict()
+
+def projeto():
+    return dict()
+
+def eventos():
+    return dict()
 
 @cache.action()
 def download():

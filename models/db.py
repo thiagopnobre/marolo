@@ -27,7 +27,7 @@ auth.settings.reset_password_requires_verification = True
 #auth.settings.login_next = ''
 
 ## modelo de dados
-db.define_table('noticia',
+db.define_table('noticias',
                 Field('titulo',length=128,notnull=True,unique=True),
                 Field('conteudo','text',notnull=True),
                 Field('data_hora','datetime', default=request.now, notnull=True),
@@ -55,3 +55,7 @@ db.define_table('eventos',
              Field('banner', 'upload')
             )
 
+db.define_table('apoiadores',
+             Field('nome', length=64, notnull=True),
+             Field('imagem', 'upload', notnull=True)
+            )
