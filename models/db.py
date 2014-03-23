@@ -25,3 +25,30 @@ auth.settings.reset_password_requires_verification = True
 
 ## auth settings
 #auth.settings.login_next = ''
+db.define_table('noticia',
+                Field('titulo',length=128,notnull=True,unique=True),
+                Field('conteudo','text',notnull=True),
+                Field('data_hora','datetime', default=request.now, notnull=True),
+                Field('permalink',notnull=True,unique=True),
+                Field('status',requires=IS_IN_SET(['publicado','não publicado']))
+                )
+
+define_table('membros',
+             Field('nome',length=64,notnull=True),
+             Field('foto','upload'),
+             Field('e-mail',requires=IS_EMAIL())
+            )
+
+define_table('projeto',
+             Field('nome',length=64,notnull=True),
+             Field('e-mail',requires=IS_EMAIL(),notnull=True),
+             Field('sobre','text',notnull=True)
+            )
+
+define_table('eventos',
+             Field('data_hora')
+            )
+
+
+
+            )
