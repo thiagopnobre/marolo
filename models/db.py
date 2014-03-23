@@ -25,6 +25,8 @@ auth.settings.reset_password_requires_verification = True
 
 ## auth settings
 #auth.settings.login_next = ''
+
+## modelo de dados
 db.define_table('noticia',
                 Field('titulo',length=128,notnull=True,unique=True),
                 Field('conteudo','text',notnull=True),
@@ -33,22 +35,23 @@ db.define_table('noticia',
                 Field('status',requires=IS_IN_SET(['publicado','não publicado']))
                 )
 
-define_table('membros',
+db.define_table('membros',
              Field('nome',length=64,notnull=True),
              Field('foto','upload'),
-             Field('e-mail',requires=IS_EMAIL())
+             Field('email',requires=IS_EMAIL())
             )
 
-define_table('projeto',
+db.define_table('projeto',
              Field('nome',length=64,notnull=True),
-             Field('e-mail',requires=IS_EMAIL(),notnull=True),
+             Field('email',requires=IS_EMAIL(),notnull=True),
              Field('sobre','text',notnull=True)
             )
 
-define_table('eventos',
-             Field('data_hora')
+db.define_table('eventos',
+             Field('nome', length=128),
+             Field('data_hora', 'datetime', default=request.now, notnull=True),
+             Field('localizacao', 'text', notnull=True),
+             Field('descricao', 'text', notnull=True),
+             Field('banner', 'upload')
             )
 
-
-
-            )
