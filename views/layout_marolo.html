@@ -53,14 +53,15 @@
         </nav>
         <div class="container" id="body-content">
             <section class="col-md-10">
-                {{for i in range(10):}}
-                    <p>teste</p>
-                {{pass}}
                 {{include}}
             </section>
-            <aside class="col-md-2">
-                {{for i in range(10):}}
-                    <p>teste</p>
+            <aside class="col-md-2" id="apoiadores">
+                {{ apoiadores = 5*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{for apoiador in apoiadores:}}
+                    <div class="apoiador">
+                        <img class="thumbnail" src="{{=apoiador['imagem']}}" alt="news"></img>
+                        <p class="text-center">{{=apoiador['nome']}}</p>
+                    </div>
                 {{pass}}
             </aside>
         </div>

@@ -8,6 +8,8 @@ body{
 }
 
 #body-content{
+    padding-right: 0;
+    margin-bottom: 20px;
     background-color: white;
 }
 
@@ -21,21 +23,32 @@ body{
     background-color:none;
 }
 
-#menu-topo a:link {
+#menu-topo a:link{
     color: white;
 }
 
-#menu-topo a:visited {
+#menu-topo a:visited{
     color: white;
 }
 
-#menu-topo a:hover {
+#menu-topo a:hover{
     color: #5AAC41;
     background-color: #53341E;
 }
 
-aside{
-    border-left: 1px solid black;
+#apoiadores{
+    padding: 15px;
+    border-left: 2px solid #EAEADF;
+}
+
+.apoiador{
+    margin: 0 auto;
+}
+
+.apoiador img{
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0;
 }
 
 footer{
