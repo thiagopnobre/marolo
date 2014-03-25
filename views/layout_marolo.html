@@ -53,13 +53,17 @@
                 {{include}}
             </section>
             <aside class="col-md-2 col-xs-12" id="apoiadores">
-                {{ apoiadores = 5*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{ apoiadores = 3*[{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
                 {{for apoiador in apoiadores:}}
                     <div class="apoiador">
                         <a href="#"><!-- url apoiador  -->
                             <img class="img-responsive thumbnail" src="{{=apoiador['imagem']}}" alt="news"></img>
                         </a>
-                        <hr>
+                        <hr />
+                        <a href="#"><!-- url apoiador  -->
+                            <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                            <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}</p>
+                        </a>
                     </div>
                 {{pass}}
             </aside>
