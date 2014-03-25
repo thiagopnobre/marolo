@@ -33,3 +33,5 @@ def download():
     """
     return response.download(request, db)
 
+def contato():
+    return dict()
