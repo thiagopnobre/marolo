@@ -57,5 +57,6 @@ db.define_table('eventos',
 
 db.define_table('apoiadores',
              Field('nome', length=64, notnull=True),
-             Field('imagem', 'upload', notnull=True)
+             Field('imagem', 'upload', notnull=True),
+             Field('url',requires=IS_URL(),notnull=True)
             )

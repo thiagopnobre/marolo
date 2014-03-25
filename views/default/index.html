@@ -1,1 +1,23 @@
 {{extend 'layout_marolo.html'}}
+{{block head}}
+    <link href="{{=URL('static','css/index.css')}}" rel="stylesheet">
+{{end}}
+{{for _ in range(4):}}
+<div class="post-div">
+    <h2 class='title'>Empresários se rebelam contra o sistema</h2>
+    <div class="news row">
+        <div class="col-md-2">
+            <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_4073-150x150.jpg" alt="post img" class="pull-left img-responsive  img-thumbnail">
+        </div>
+        <div class="col-md-10">
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid veniam exercitationem sequi adipisci consectetur ducimus facere blanditiis distinctio. Expedita, fugiat, delectus, nulla quae ex nesciunt quisquam obcaecati sit maxime sed a facilis voluptatibus amet officiis beatae commodi quos aliquid vitae! Officiis, voluptatem nihil quas in error possimus optio quis sunt.
+                </p>
+            </article>
+            <a class="btn btn-success pull-right" href="#">Leia mais</a>
+            <small class='pull-left text-muted'>Publicada em: 10/02/2014</small>
+        </div>
+    </div>
+</div>
+{{pass}}

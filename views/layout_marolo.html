@@ -15,9 +15,6 @@
         <link href="{{=URL('static','css/font-awesome.min.css')}}" rel="stylesheet">
         <link href="{{=URL('static','css/base.css')}}" rel="stylesheet">
 
-        <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
-        <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
-        
         <title>{{block title}}{{end}}</title>
         {{block head}}
         {{end}}
@@ -52,15 +49,17 @@
             </div>
         </nav>
         <div class="container" id="body-content">
-            <section class="col-md-10">
+            <section class="col-md-10 col-xs-12">
                 {{include}}
             </section>
-            <aside class="col-md-2" id="apoiadores">
+            <aside class="col-md-2 col-xs-12" id="apoiadores">
                 {{ apoiadores = 5*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
                 {{for apoiador in apoiadores:}}
                     <div class="apoiador">
-                        <img class="thumbnail" src="{{=apoiador['imagem']}}" alt="news"></img>
-                        <p class="text-center">{{=apoiador['nome']}}</p>
+                        <a href="#"><!-- url apoiador  -->
+                            <img class="img-responsive thumbnail" src="{{=apoiador['imagem']}}" alt="news"></img>
+                        </a>
+                        <hr>
                     </div>
                 {{pass}}
             </aside>
@@ -71,11 +70,15 @@
                 <a href='https://github.com/grupythonUFLA/' rel='nofollow' title='Grupython UFLA'>
                     Grupython UFLA
                 </a>
-                2014 | Powered By 
+                2014 | Powered By
                 <a href='http://www.web2py.com/' rel='nofollow' title='Web2py'>
                     Web2py
                 </a>
             </p>
         </footer>
+
+        <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
+        <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+        <script src="{{=URL('static','js/jquery.js')}}"></script>
     </body>
 </html>
