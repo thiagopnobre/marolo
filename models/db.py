@@ -28,35 +28,36 @@ auth.settings.reset_password_requires_verification = True
 
 ## modelo de dados
 db.define_table('noticias',
-                Field('titulo',length=128,notnull=True,unique=True),
-                Field('conteudo','text',notnull=True),
-                Field('data_hora','datetime', default=request.now, notnull=True),
-                Field('permalink',notnull=True,unique=True),
-                Field('status',requires=IS_IN_SET(['publicado','não publicado']))
-                )
+                Field('titulo', length=128, notnull=True, unique=True),
+                Field('conteudo', 'text', notnull=True),
+                Field('data_hora', 'datetime', default=request.now, notnull=True),
+                Field('permalink', notnull=True, unique=True),
+                Field('status', requires=IS_IN_SET(['publicado','não publicado']))
+               )
 
 db.define_table('membros',
-             Field('nome',length=64,notnull=True),
-             Field('foto','upload'),
-             Field('email',requires=IS_EMAIL())
-            )
+                Field('nome', length=64, notnull=True),
+                Field('foto', 'upload'),
+                Field('email', requires=IS_EMAIL())
+               )
 
 db.define_table('projeto',
-             Field('nome',length=64,notnull=True),
-             Field('email',requires=IS_EMAIL(),notnull=True),
-             Field('sobre','text',notnull=True)
-            )
+                Field('nome', length=64, notnull=True),
+                Field('email', requires=IS_EMAIL(), notnull=True),
+                Field('sobre', 'text', notnull=True)
+               )
 
 db.define_table('eventos',
-             Field('nome', length=128),
-             Field('data_hora', 'datetime', default=request.now, notnull=True),
-             Field('localizacao', 'text', notnull=True),
-             Field('descricao', 'text', notnull=True),
-             Field('banner', 'upload')
-            )
+                Field('nome', length=128),
+                Field('data_hora', 'datetime', default=request.now, notnull=True),
+                Field('localizacao', 'text', notnull=True),
+                Field('descricao', 'text', notnull=True),
+                Field('banner', 'upload')
+               )
 
 db.define_table('apoiadores',
-             Field('nome', length=64, notnull=True),
-             Field('imagem', 'upload', notnull=True),
-             Field('url',requires=IS_URL(),notnull=True)
-            )
+                Field('nome', length=64, notnull=True),
+                Field('imagem', 'upload', notnull=True),
+                Field('url',requires=IS_URL(),notnull=True)
+               )
+
