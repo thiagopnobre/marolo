@@ -47,6 +47,12 @@ db.define_table('projeto',
                 Field('sobre', 'text', notnull=True)
                )
 
+db.define_table('associacao',
+                Field('nome', length=64, notnull=True),
+                Field('email', requires=IS_EMAIL(), notnull=True),
+                Field('sobre', 'text', notnull=True)
+               )
+
 db.define_table('eventos',
                 Field('nome', length=128),
                 Field('data_hora', 'datetime', default=request.now, notnull=True),
@@ -57,6 +63,7 @@ db.define_table('eventos',
 
 db.define_table('apoiadores',
                 Field('nome', length=64, notnull=True),
+                Field('tipo', length=64, requires=IS_IN_SET(['patrocinador', 'parceiro'])),
                 Field('imagem', 'upload', notnull=True),
                 Field('url',requires=IS_URL(),notnull=True)
                )

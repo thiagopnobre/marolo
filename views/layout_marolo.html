@@ -43,6 +43,7 @@
                         <li><a href='{{=URL ("default", "index")}}'>Inicio</a></li>
                         <li><a href='{{=URL ("default", "membros")}}'>Membros</a></li>
                         <li><a href='{{=URL ("default", "projeto")}}'>Projeto</a></li>
+                        <li><a href='{{=URL ("default", "associacao")}}'>Associação</a></li>
                         <li><a href='{{=URL ("default", "eventos")}}'>Eventos</a></li>
                         <li><a href='{{=URL ("default", "contato")}}'>Contato</a></li>
                     </ul>
@@ -54,18 +55,55 @@
                 {{include}}
             </section>
             <aside class="col-md-2 col-xs-12" id="apoiadores">
-                {{ apoiadores = 3*[{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
-                {{for apoiador in apoiadores:}}
-                    <div class="apoiador">
-                        <a href="#"><!-- url apoiador  -->
-                            <img class="img-responsive thumbnail" src="{{=apoiador['imagem']}}" alt="news"></img>
-                        </a>
-                        <hr />
-                        <a href="#"><!-- url apoiador  -->
-                            <!-- o nome do apoiador deve ser polido no lado do servidor -->
-                            <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}</p>
-                        </a>
-                    </div>
+                {{ patrocinadores = [{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{ parceiros = [{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{ apoiadores = [{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{if patrocinadores:}}
+                    <p class="text-center text-muted">Patrocinadores</p>
+                    {{for patrocinador in patrocinadores:}}
+                        <div class="apoiador">
+                            <a href="#"><!-- url apoiador  -->
+                                <img class="img-responsive thumbnail" src="{{=patrocinador['imagem']}}" alt="news"></img>
+                            </a>
+                            <hr />
+                            <a href="#"><!-- url apoiador  -->
+                                <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
+                            </a>
+                        </div>
+                    {{pass}}
+                {{pass}}
+
+                {{if parceiros:}}
+                    <p class="text-center text-muted">Parceiros</p>
+                    {{for parceiro in parceiros:}}
+                        <div class="apoiador">
+                            <a href="#"><!-- url apoiador  -->
+                                <img class="img-responsive thumbnail" src="{{=parceiro['imagem']}}" alt="news"></img>
+                            </a>
+                            <hr />
+                            <a href="#"><!-- url apoiador  -->
+                                <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in parceiro['nome'].strip().split())}}</p>
+                            </a>
+                        </div>
+                    {{pass}}
+                {{pass}}
+
+                {{if apoiadores:}}
+                    <p class="text-center text-muted">Apoiadores</p>
+                    {{for apoiador in apoiadores:}}
+                        <div class="apoiador">
+                            <a href="#"><!-- url apoiador  -->
+                                <img class="img-responsive thumbnail" src="{{=parceiro['imagem']}}" alt="news"></img>
+                            </a>
+                            <hr />
+                            <a href="#"><!-- url apoiador  -->
+                                <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}</p>
+                            </a>
+                        </div>
+                    {{pass}}
                 {{pass}}
             </aside>
         </div>
