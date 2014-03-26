@@ -38,6 +38,7 @@
                         </span>
                     </button>
                 </div>
+
                 <div class='collapse navbar-collapse' id='mobile-button'>
                     <ul class='nav navbar-nav'>
                         <li><a href='{{=URL ("default", "index")}}'>Inicio</a></li>
@@ -50,61 +51,61 @@
                 </div>
             </div>
         </nav>
+
         <div class="container" id="body-content">
-            <section class="col-md-10 col-xs-12" id="section-content">
+            <section class="col-md-10 col-xs-12">
                 {{include}}
+
+                {{ parceiros = 5*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                {{ apoiadores = 4*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+                <div id="parceiros_apoiadores">
+                    <div class="row">
+                        {{if parceiros:}}
+                            <h4 >Parceiros</h4>
+                            {{for parceiro in parceiros:}}
+                                <div class="col-md-2 text-center">
+                                    <a href="#"><!-- url parceiro  -->
+                                        <img class="img-thumbnail"  alt="news" src="{{=parceiro['imagem']}}">
+                                    </a>
+                                </div>
+                            {{pass}}
+                        {{pass}}
+                    </div>
+
+                    <div class="row">
+                        {{if apoiadores:}}
+                            <h4 >Apoiadores</h4>
+                            {{for apoiador in apoiadores:}}
+                                <div class="col-md-2 text-center">
+                                    <a href="#"><!-- url apoiador  -->
+                                        <img class="img-thumbnail"  alt="news" src="{{=apoiador['imagem']}}">
+                                    </a>
+                                </div>
+                            {{pass}}
+                        {{pass}}
+                    </div>
+                </div>
             </section>
-            <aside class="col-md-2 col-xs-12" id="apoiadores">
-                {{ patrocinadores = [{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
+            <aside class="col-md-2 col-xs-12" id="patrocinadores">
+                {{ patrocinadores = 2*[{'nome': 'teste com um nome grande de apoiador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
                 {{if patrocinadores:}}
-                    <p class="text-center text-muted">Patrocinadores</p>
+                    <h4 class="text-center ">Patrocinadores</h4>
                     {{for patrocinador in patrocinadores:}}
-                        <div class="apoiador">
-                            <a href="#"><!-- url apoiador  -->
+                        <div class="patrocinador">
+                            <a href="#"><!-- url patrocinador  -->
                                 <img class="img-responsive thumbnail" src="{{=patrocinador['imagem']}}" alt="news"></img>
                             </a>
                             <hr />
-                            <a href="#"><!-- url apoiador  -->
+                            <a href="#"><!-- url patrocinador  -->
                                 <!-- o nome do apoiador deve ser polido no lado do servidor -->
                                 <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
                             </a>
                         </div>
                     {{pass}}
-                {{pass}}              
+                {{pass}}
+            </aside>
         </div>
-        
-        <div class="container">
-			{{ parceiros = [{'nome': '', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
-			{{ apoiadores = [{'nome': '', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
-			
-			{{if parceiros:}}
-				<p class="col-xs-1 text-muted">Parceiros</p>
-				{{for parceiro in parceiros:}}					
-					{{for _ in range(10):}}
-					<!-- col-md-1 mantem o texto alinhado na horizontal -->
-						<div class="col-md-1 text-center">
-							<a href="#"><!-- url parceiro  -->
-								<img class="img-thumbnail"  alt="news" src="{{=parceiro['imagem']}}">
-							</a>						
-						</div>
-					{{pass}}					
-				{{pass}}
-			{{pass}}			
-			
-			{{if apoiadores:}}
-				<p class="col-xs-1 text-muted">Apoiadores</p>
-				{{for apoiador in apoiadores:}}					
-					{{for _ in range(10):}}
-						<div class="col-md-1 text-center">
-							<a href="#"><!-- url apoiador  -->
-								<img class="img-thumbnail"  alt="news" src="{{=parceiro['imagem']}}">
-							</a>						
-						</div>
-					{{pass}}					
-				{{pass}}
-			{{pass}}							
-		</div>
-        
+
         <footer class="col-md-12">
             <p class='footer-link text-center'>
                 &#169;

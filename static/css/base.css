@@ -35,7 +35,11 @@ body {
     background-color: #53341E;
 }
 
-.apoiador {
+#patrocinadores h4{
+    margin-top: 0;
+}
+
+.patrocinador {
     margin: 0 auto;
     margin-bottom: 5px;
     padding: 5px;
@@ -43,10 +47,16 @@ body {
     background-color: white;
 }
 
-.apoiador img {
+.patrocinador img {
     width: 100%;
     margin-bottom: 0;
     border-radius: 0;
+}
+
+#parceiros_apoiadores{
+    padding: 10px 20px;
+    border-radius: 3px;
+    background-color: white;
 }
 
 footer {
