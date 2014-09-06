@@ -1,1 +1,9 @@
 {{extend 'layout_marolo.html'}}
+{{block head}}
+    <link href="{{=URL('static','css/contato.css')}}" rel="stylesheet">
+{{end}}
+<div class="text-center contato">
+    <h3>Entre em contato conosco</h3>
+    {{=form}}
+</div>
+
