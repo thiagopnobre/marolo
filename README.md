@@ -31,7 +31,7 @@ O que deve conter no projeto
 
 TODO:
 
-- [ ] corrigir estilo de links do footer
+- [X] corrigir estilo de links do footer
 
 - [ ] aprimorar responsividade
 
