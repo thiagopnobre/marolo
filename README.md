@@ -31,14 +31,14 @@ O que deve conter no projeto
 
 TODO:
 
-[ ] corrigir estilo de links do footer
+- [ ] corrigir estilo de links do footer
 
-[ ] aprimorar responsividade
+- [ ] aprimorar responsividade
 
-[ ] Operações CRUD do admin
+- [ ] Operações CRUD do admin
 
-[ ] Exibir notícia atraves de slug
+- [ ] Exibir notícia atraves de slug
 
-[ ] recortar imagens de patrocinio, apoio
+- [ ] recortar imagens de patrocinio, apoio
 
-[ ] Tornar as telas dinâmicas(conteudo não estático)
+- [ ] Tornar as telas dinâmicas(conteudo não estático)
