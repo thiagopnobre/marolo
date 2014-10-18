@@ -28,3 +28,17 @@ O que deve conter no projeto
 - Contatos
 
   - infromação do contato com o projeto
+
+TODO:
+
+[ ] corrigir estilo de links do footer
+
+[ ] aprimorar responsividade
+
+[ ] Operações CRUD do admin
+
+[ ] Exibir notícia atraves de slug
+
+[ ] recortar imagens de patrocinio, apoio
+
+[ ] Tornar as telas dinâmicas(conteudo não estático)
