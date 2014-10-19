@@ -11,6 +11,11 @@ textarea{
     resize:none;
 }
 
+.admin-content{
+    background-color: white;
+    padding: 10px;
+}
+
 #body-content {
     padding-right: 0;
     margin-bottom: 20px;

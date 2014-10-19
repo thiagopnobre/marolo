@@ -15,7 +15,7 @@
   <!-- Always force latest IE rendering engine
        (even in intranet) & Chrome Frame
        Remove this if you use the .htaccess -->
-	   
+
   <meta charset="utf-8" />
 
   <!-- http://dev.w3.org/html5/markup/meta.name.html -->
@@ -39,131 +39,89 @@
        HTML5 elements & feature detects -->
   <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
 
-  <!-- include stylesheets -->
-  {{
-  response.files.insert(0,URL('static','css/web2py.css'))
-  response.files.insert(1,URL('static','css/bootstrap.min.css'))
-  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
-  response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
-  }}
 
   {{include 'web2py_ajax.html'}}
 
-  {{
-  # using sidebars need to know what sidebar you want to use
-  left_sidebar_enabled = globals().get('left_sidebar_enabled',False)
-  right_sidebar_enabled = globals().get('right_sidebar_enabled',False)
-  middle_columns = {0:'span12',1:'span9',2:'span6'}[
-    (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
-  }}
-
-  <!-- uncomment here to load jquery-ui
-       <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
-       <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-       uncomment to load jquery-ui //-->
-  <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
+  <link href="{{=URL('static','css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static','css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static','css/base.css')}}" rel="stylesheet">
   {{block head}}{{end}}
 </head>
 
 <body>
-  <!-- Navbar ================================================== -->
-  <div class="navbar navbar-inverse">
-    <div class="flash">{{=response.flash or ''}}</div>
-    <div class="navbar-inner">
-      <div class="container">
-        {{is_mobile=request.user_agent().is_mobile}}
-        <!-- the next tag is necessary for bootstrap menus, do not remove -->
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="{{='display:none;' if not is_mobile else ''}}">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        {{=response.logo or ''}}
-        <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
-        <div class="{{='nav-collapse' if is_mobile else 'nav'}}">
-          {{if response.menu:}}
-          {{=MENU(response.menu, _class='mobile-menu nav' if is_mobile else 'nav',mobile=is_mobile,li_class='dropdown',ul_class='dropdown-menu')}}
-          {{pass}}
-        </div><!--/.nav-collapse -->
+  <nav class="navbar" id="menu-topo" role="navigation">
+      <div class='container'>
+          <div class='navbar-header'>
+              <a class='navbar-brand' title="Ir para o site" href='{{=URL ("default", "index")}}'  target="_blank">
+                  <i class='fa fa-home'></i>
+              </a>
+              <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button'>
+                  <span class='sr-only'>
+                      Toggle navigation
+                  </span>
+                  <span class='icon-bar'>
+                  </span>
+                  <span class='icon-bar'>
+                  </span>
+                  <span class='icon-bar'>
+                  </span>
+              </button>
+          </div>
+
+          <div class='collapse navbar-collapse' id='mobile-button'>
+
+              <ul class='nav navbar-nav'>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inserir <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="{{=URL('inserir',args=['noticias'])}}">Notícia</a></li>
+                      <li><a href="{{=URL('inserir',args=['membros'])}}">Membro</a></li>
+                      <li><a href="{{=URL('inserir',args=['eventos'])}}">Evento</a></li>
+                      <li><a href="{{=URL('inserir',args=['apoiadores'])}}">Apoiador</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Listar <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="{{=URL('listar',args=['noticias'])}}">Notícia</a></li>
+                      <li><a href="{{=URL('listar',args=['membros'])}}">Membro</a></li>
+                      <li><a href="{{=URL('listar',args=['eventos'])}}">Evento</a></li>
+                      <li><a href="{{=URL('listar',args=['apoiadores'])}}">Apoiador</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{{=URL('editar',args=['projeto',1])}}">Sobre o projeto</a></li>
+                  <li><a href="{{=URL('editar',args=['associacao', 1])}}">Sobre a associação</a></li>
+              </ul>
+          </div>
       </div>
-    </div>
-  </div><!--/top navbar -->
-
-  <div class="container">
-    <!-- Masthead ================================================== -->
-    <header class="mastheader row" id="header">
-      {{if response.title:}}
-        <div class="span12">
-            <div class="page-header">
-                <h1>
-                    {{=response.title}}
-                    <small>{{=response.subtitle or ''}}</small>
-                </h1>
-            </div>
-        </div>
-	{{pass}}
-    </header>
-
-    <section id="main" class="main row">
-        {{if left_sidebar_enabled:}}
-        <div class="span3 left-sidebar">
-            {{block left_sidebar}}
-            <h3>Left Sidebar</h3>
-            <p></p>
-            {{end}}
-        </div>
-        {{pass}}
-
-        <div class="{{=middle_columns}}">
-            {{block center}}
+  </nav>
+  <div class="container" id="body-content">
+      <section class="col-md-10 col-xs-12">
+          <div class="row admin-content" >
             {{include}}
-            {{end}}
-        </div>
-
-        {{if right_sidebar_enabled:}}
-        <div class="span3">
-            {{block right_sidebar}}
-            <h3>Right Sidebar</h3>
-            <p></p>
-            {{end}}
-        </div>
-        {{pass}}
-    </section><!--/main-->
-
-    <!-- Footer ================================================== -->
-    <div class="row">
-        <footer class="footer span12" id="footer">
-            <div class="footer-content">
-                {{block footer}} <!-- this is default footer -->
-                <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
-                <div id="poweredBy" class="pull-right">
-                    {{=T('Powered by')}}
-                    <a href="http://www.web2py.com/">web2py</a>
-                </div>
-                {{end}}
-            </div>
-        </footer>
-    </div>
-
-  </div> <!-- /container -->
+          </div>
+      </section>
+  </div>
+  <footer class="col-md-12">
+        <p class='footer-link text-center'>
+            &#169;
+            <a href='https://github.com/grupythonUFLA/' rel='nofollow' title='Grupython UFLA'>
+                Grupython UFLA
+            </a>
+            2014 | Powered By
+            <a href='http://www.web2py.com/' rel='nofollow' title='Web2py'>
+                Web2py
+            </a>
+        </p>
+    </footer>
 
   <!-- The javascript =============================================
        (Placed at the end of the document so the pages load faster) -->
   <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
-  <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
   <!--[if lt IE 7 ]>
       <script src="{{=URL('static','js/dd_belatedpng.js')}}"></script>
       <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
       <![endif]-->
-  
-  {{if response.google_analytics_id:}}
-  <script src="{{=URL('static','js/analytics.min.js')}}"></script>
-  <script type="text/javascript">
-  analytics.initialize({
-    'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'} 
-  });</script>
-  {{pass}}
-  <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
 </body>
 </html>
 

@@ -55,17 +55,14 @@
         <div class="container" id="body-content">
             <section class="col-md-10 col-xs-12">
                 {{include}}
-
-                {{ parceiros = 5*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
-                {{ apoiadores = 4*[{'nome': 'teste', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
-                <div id="parceiros_apoiadores">
+                <div class="row" id="parceiros_apoiadores">
                     <div class="row">
                         {{if parceiros:}}
                             <h4 >Parceiros</h4>
                             {{for parceiro in parceiros:}}
                                 <div class="col-md-2 text-center">
                                     <a href="#"><!-- url parceiro  -->
-                                        <img class="img-thumbnail"  alt="news" src="{{=parceiro['imagem']}}">
+                                        <img class="img-thumbnail"  alt="news" src="{{=URL('download', args=[parceiro['imagem']])}}">
                                     </a>
                                 </div>
                             {{pass}}
@@ -78,7 +75,7 @@
                             {{for apoiador in apoiadores:}}
                                 <div class="col-md-2 text-center">
                                     <a href="#"><!-- url apoiador  -->
-                                        <img class="img-thumbnail"  alt="news" src="{{=apoiador['imagem']}}">
+                                        <img class="img-thumbnail"  alt="news" src="{{=URL('download', args=[apoiador['imagem']])}}">
                                     </a>
                                 </div>
                             {{pass}}
@@ -87,13 +84,12 @@
                 </div>
             </section>
             <aside class="col-md-2 col-xs-12" id="patrocinadores">
-                {{ patrocinadores = 2*[{'nome': 'teste com um nome grande de patrocinador', 'imagem': 'http://www.blog.mcientifica.com.br/wp-content/uploads/2013/06/Marolo.jpg'}] }}
                 {{if patrocinadores:}}
                     <h4 class="text-center ">Patrocinadores</h4>
                     {{for patrocinador in patrocinadores:}}
                         <div class="patrocinador">
                             <a href="#"><!-- url patrocinador  -->
-                                <img class="img-responsive thumbnail" src="{{=patrocinador['imagem']}}" alt="news"></img>
+                                <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['imagem']])}}" alt="news"></img>
                             </a>
                             <hr />
                             <a href="#"><!-- url patrocinador  -->

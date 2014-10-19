@@ -2,7 +2,8 @@
 
 
 def index():
-    return dict()
+    noticias = db(db.noticias.status == "publicado").select(orderby=~db.noticias.data_hora)
+    return dict(noticias=noticias)
 
 
 def membros():

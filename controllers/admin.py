@@ -1,4 +1,4 @@
-def index():
+def user():
     """
     exposes:
     http://..../[app]/default/user/login
@@ -16,18 +16,37 @@ def index():
     return dict(form=auth())
 
 @auth.requires_login()
-def noticias():
-    return dict()
+def inserir():
+    argumento = request.args(0) or redirect(URL('default','index'))
+    if argumento not in ('noticias','membros', 'eventos', 'apoiadores'):
+        redirect(URL('default','index'))
+    form = SQLFORM(db[argumento], submit_button="Enviar", formstyle='bootstrap3_stacked')
+    if form.process().accepted:
+        response.flash = 'Registro inserido com sucesso!'
+    elif form.errors:
+        response.flash = 'Formulário contem erros'
+    return dict(argumento=argumento, form=form)
+
 
 @auth.requires_login()
-def membros():
-    return dict()
+def listar():
+    argumento = request.args(0) or redirect(URL('default','index'))
+    if argumento not in ('noticias','membros', 'eventos', 'apoiadores'):
+        redirect(URL('default','index'))
+    lista = db(db[argumento]).select()
+    return dict(argumento=argumento, lista=lista)
+
 
 @auth.requires_login()
-def projeto():
-    return dict()
+def editar():
+    argumento = request.args(0) or redirect(URL('default','index'))
+    if argumento not in ('noticias','membros', 'eventos', 'apoiadores', 'projeto', 'associacao'):
+        redirect(URL('default','index'))
+    cod = request.args(1) or redirect(URL('default','index'))
+    form = SQLFORM(db[argumento],cod,deletable=argumento not in ('projeto', 'associacao'),showid=False, submit_button="Enviar", formstyle="bootstrap3_stacked")
 
-@auth.requires_login()
-def eventos():
-    return dict()
-
+    if form.process().accepted:
+        response.flash = 'Registro editado com sucesso'
+    elif form.errors:
+        response.flash = 'Formulário contem erros'
+    return dict(argumento=argumento, form=form)

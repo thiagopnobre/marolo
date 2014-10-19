@@ -33,12 +33,32 @@ TODO:
 
 - [X] corrigir estilo de links do footer
 
-- [ ] aprimorar responsividade
+- [X] Operações CRUD do admin
 
-- [ ] Operações CRUD do admin
+- [X] widget de edição de texto(ckeditor)
+
+- [X] Tela login admin
+
+- [X] on auth redirect
+
+- [ ] botão logout
+
+- [X] CSS botão SQLFORM
+
+- [ ] corrigir estilo do menu
+
+- [X] na tela de edição de projeto e associação não podem ser deletable e aparecer id
+
+- [ ] Corrigir imagens no editar do admin
+
+- [ ] habilitar flash
+
+- [ ] Tornar as telas dinâmicas(conteudo não estático)
 
 - [ ] Exibir notícia atraves de slug
 
 - [ ] recortar imagens de patrocinio, apoio
 
-- [ ] Tornar as telas dinâmicas(conteudo não estático)
+- [ ] aprimorar responsividade
+
+
