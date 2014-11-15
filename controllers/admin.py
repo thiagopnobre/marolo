@@ -1,3 +1,6 @@
+def index():
+    redirect(URL(c='admin', f='user'))
+
 def user():
     """
     exposes:
@@ -15,12 +18,14 @@ def user():
     """
     return dict(form=auth())
 
+
 @auth.requires_login()
 def inserir():
-    argumento = request.args(0) or redirect(URL('default','index'))
-    if argumento not in ('noticias','membros', 'eventos', 'apoiadores'):
-        redirect(URL('default','index'))
-    form = SQLFORM(db[argumento], submit_button="Enviar", formstyle='bootstrap3_stacked')
+    argumento = request.args(0) or redirect(URL('default', 'index'))
+    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores'):
+        redirect(URL('default', 'index'))
+    form = SQLFORM(
+        db[argumento], submit_button="Enviar", formstyle='bootstrap3_stacked')
     if form.process().accepted:
         response.flash = 'Registro inserido com sucesso!'
     elif form.errors:
@@ -30,20 +35,27 @@ def inserir():
 
 @auth.requires_login()
 def listar():
-    argumento = request.args(0) or redirect(URL('default','index'))
-    if argumento not in ('noticias','membros', 'eventos', 'apoiadores'):
-        redirect(URL('default','index'))
+    argumento = request.args(0) or redirect(URL('default', 'index'))
+    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores'):
+        redirect(URL('default', 'index'))
     lista = db(db[argumento]).select()
     return dict(argumento=argumento, lista=lista)
 
 
 @auth.requires_login()
 def editar():
-    argumento = request.args(0) or redirect(URL('default','index'))
-    if argumento not in ('noticias','membros', 'eventos', 'apoiadores', 'projeto', 'associacao'):
-        redirect(URL('default','index'))
-    cod = request.args(1) or redirect(URL('default','index'))
-    form = SQLFORM(db[argumento],cod,deletable=argumento not in ('projeto', 'associacao'),showid=False, submit_button="Enviar", formstyle="bootstrap3_stacked")
+    argumento = request.args(0) or redirect(URL('default', 'index'))
+    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores',
+                         'projeto', 'associacao'):
+        redirect(URL('default', 'index'))
+    cod = request.args(1) or redirect(URL('default', 'index'))
+    form = SQLFORM(
+        db[argumento],
+        cod,
+        deletable=argumento not in ('projeto', 'associacao'),
+        showid=False, submit_button="Enviar",
+        formstyle="bootstrap3_stacked"
+    )
 
     if form.process().accepted:
         response.flash = 'Registro editado com sucesso'

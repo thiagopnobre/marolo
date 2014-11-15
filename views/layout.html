@@ -91,7 +91,11 @@
                   </li>
                   <li><a href="{{=URL('editar',args=['projeto',1])}}">Sobre o projeto</a></li>
                   <li><a href="{{=URL('editar',args=['associacao', 1])}}">Sobre a associação</a></li>
+                  {{if auth.is_logged_in():}}
+                  <li><a class="btn nav-" href="{{=URL(c='admin', f='user', args=['logout'])}}">Sair</a></li>
+                  {{pass}}
               </ul>
+
           </div>
       </div>
   </nav>
