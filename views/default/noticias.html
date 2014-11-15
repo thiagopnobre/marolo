@@ -1,0 +1,16 @@
+{{extend 'layout_marolo.html'}}
+
+
+<div class="post-div">
+    <h2 class='title'>{{=noticia.titulo}}</h2>
+    <small class='pull-left text-muted'>Publicado: {{=prettydate(noticia.data_hora)}}</small>
+    <div class="news row">
+        <div class="col-md-12">
+            <article>
+                <p>
+                    {{=XML(noticia.conteudo)}}
+                </p>
+            </article>
+        </div>
+    </div>
+</div>

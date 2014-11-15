@@ -19,7 +19,7 @@
                     {{=noticia.resumo}}
                 </p>
             </article>
-            <a class="btn btn-success pull-right" href="#">Leia mais</a>
+            <a class="btn btn-success pull-right" href="{{=URL('noticias', args=[noticia.permalink])}}">Leia mais</a>
             <small class='pull-left text-muted'>Publicado: {{=prettydate(noticia.data_hora)}}</small>
         </div>
     </div>
