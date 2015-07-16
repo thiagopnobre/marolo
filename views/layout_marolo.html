@@ -1,123 +1,110 @@
-<!--[if HTML5]><![endif]-->
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
-<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
-<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
-<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--><html lang="pt-br"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta name="application-name" content="Site_Projeto_Marolo" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="pt-br">
 
-        <link href="{{=URL('static','css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{=URL('static','css/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{=URL('static','css/base.css')}}" rel="stylesheet">
+<head>
+    <meta charset="utf-8" />
+    <meta name="application-name" content="Site_Projeto_Marolo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{=URL('static','css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{=URL('static','css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{=URL('static','css/base.css')}}" rel="stylesheet">
+    <title>Projeto Marolo {{block title}}{{end}}</title>
+    {{block head}} {{end}}
+</head>
 
-        <title>{{block title}}{{end}}</title>
-        {{block head}}
-        {{end}}
-    </head>
-    <body>
-        <nav class="navbar" id="menu-topo" role="navigation">
-            <div class='container'>
-                <div class='navbar-header'>
-                    <a class='navbar-brand' href='{{=URL ("default", "index")}}'>
-                        <i class='fa fa-home'></i>
-                    </a>
-                    <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button'>
-                        <span class='sr-only'>
+<body>
+    <nav class="navbar" id="menu-topo" role="navigation">
+        <div class='container'>
+            <div class='navbar-header'>
+                <a class='navbar-brand' href='{{=URL ("default", "index")}}'>
+                    <i class='fa fa-home'></i>
+                </a>
+                <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button'>
+                    <span class='sr-only'>
                             Toggle navigation
                         </span>
-                        <span class='icon-bar'>
+                    <span class='icon-bar'>
                         </span>
-                        <span class='icon-bar'>
+                    <span class='icon-bar'>
                         </span>
-                        <span class='icon-bar'>
+                    <span class='icon-bar'>
                         </span>
-                    </button>
-                </div>
-
-                <div class='collapse navbar-collapse' id='mobile-button'>
-                    <ul class='nav navbar-nav'>
-                        <li><a id="menu-inicio" href='{{=URL ("default", "index")}}'>Inicio</a></li>
-                        <li><a id="menu-membros" href='{{=URL ("default", "membros")}}'>Membros</a></li>
-                        <li><a id="menu-projeto" href='{{=URL ("default", "projeto")}}'>Projeto</a></li>
-                        <li><a id="menu-associacao" href='{{=URL ("default", "associacao")}}'>Associação</a></li>
-                        <li><a id="menu-eventos" href='{{=URL ("default", "eventos")}}'>Eventos</a></li>
-                        <li><a id="menu-contato" href='{{=URL ("default", "contato")}}'>Contato</a></li>
-                    </ul>
-                </div>
+                </button>
             </div>
-        </nav>
-
-        <div class="container" id="body-content">
-            <section class="col-md-10 col-xs-12">
-                {{include}}
-                {{if apoiadores or parceiros:}}
-                    <div class="row" id="parceiros_apoiadores">
-                        <div class="row">
-                            {{if parceiros:}}
-                                <h4 >Parceiros</h4>
-                                {{for parceiro in parceiros:}}
-                                    <div class="col-md-2 text-center">
-                                        <a href="#"><!-- url parceiro  -->
-                                            <img class="img-thumbnail"  alt="news" src="{{=URL('download', args=[parceiro['imagem']])}}">
-                                        </a>
-                                    </div>
-                                {{pass}}
-                            {{pass}}
-                        </div>
-                        {{if apoiadores:}}
-                            <div class="row">
-                                    <h4 >Apoiadores</h4>
-                                    {{for apoiador in apoiadores:}}
-                                        <div class="col-md-2 text-center">
-                                            <a href="#"><!-- url apoiador  -->
-                                                <img class="img-thumbnail"  alt="news" src="{{=URL('download', args=[apoiador['imagem']])}}">
-                                            </a>
-                                        </div>
-                                    {{pass}}
-                            </div>
-                        {{pass}}
-                    </div>
-                {{pass}}
-            </section>
-            <aside class="col-md-2 col-xs-12" id="patrocinadores">
-                {{if patrocinadores:}}
-                    <h4 class="text-center ">Patrocinadores</h4>
-                    {{for patrocinador in patrocinadores:}}
-                        <div class="patrocinador">
-                            <a href="#"><!-- url patrocinador  -->
-                                <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['imagem']])}}" alt="news"></img>
-                            </a>
-                            <hr />
-                            <a href="#"><!-- url patrocinador  -->
-                                <!-- o nome do apoiador deve ser polido no lado do servidor -->
-                                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
-                            </a>
-                        </div>
-                    {{pass}}
-                {{pass}}
-            </aside>
+            <div class='collapse navbar-collapse' id='mobile-button'>
+                <ul class='nav navbar-nav'>
+                    <li><a id="menu-inicio" href='{{=URL ("default", "index")}}'>Inicio</a></li>
+                    <li><a id="menu-membros" href='{{=URL ("default", "membros")}}'>Membros</a></li>
+                    <li><a id="menu-projeto" href='{{=URL ("default", "projeto")}}'>Projeto</a></li>
+                    <li><a id="menu-associacao" href='{{=URL ("default", "associacao")}}'>Associação</a></li>
+                    <li><a id="menu-eventos" href='{{=URL ("default", "eventos")}}'>Eventos</a></li>
+                    <li><a id="menu-contato" href='{{=URL ("default", "contato")}}'>Contato</a></li>
+                </ul>
+            </div>
         </div>
-
-        <footer class="col-md-12">
-            <p class='footer-link text-center'>
-                &#169;
-                <a href='https://github.com/grupythonUFLA/' rel='nofollow' title='Grupython UFLA'>
-                    Grupython UFLA
+    </nav>
+    <div class="container" id="body-content">
+        <section class="col-md-10 col-xs-12">
+            {{include}} {{if apoiadores or parceiros:}}
+            <div class="row" id="parceiros_apoiadores">
+                <div class="row">
+                    {{if parceiros:}}
+                    <h4>Parceiros</h4> {{for parceiro in parceiros:}}
+                    <div class="col-md-2 text-center">
+                        <a href="#">
+                            <!-- url parceiro  -->
+                            <img class="img-thumbnail" alt="news" src="{{=URL('download', args=[parceiro['imagem']])}}">
+                        </a>
+                    </div>
+                    {{pass}} {{pass}}
+                </div>
+                {{if apoiadores:}}
+                <div class="row">
+                    <h4>Apoiadores</h4> {{for apoiador in apoiadores:}}
+                    <div class="col-md-2 text-center">
+                        <a href="#">
+                            <!-- url apoiador  -->
+                            <img class="img-thumbnail" alt="news" src="{{=URL('download', args=[apoiador['imagem']])}}">
+                        </a>
+                    </div>
+                    {{pass}}
+                </div>
+                {{pass}}
+            </div>
+            {{pass}}
+        </section>
+        <aside class="col-md-2 col-xs-12" id="patrocinadores">
+            {{if patrocinadores:}}
+            <h4 class="text-center ">Patrocinadores</h4> {{for patrocinador in patrocinadores:}}
+            <div class="patrocinador">
+                <a href="#">
+                    <!-- url patrocinador  -->
+                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['imagem']])}}" alt="news"></img>
                 </a>
-                2014 | Powered By
-                <a href='http://www.web2py.com/' rel='nofollow' title='Web2py'>
+                <hr />
+                <a href="#">
+                    <!-- url patrocinador  -->
+                    <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                    <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
+                </a>
+            </div>
+            {{pass}} {{pass}}
+        </aside>
+    </div>
+    <footer class="col-md-12">
+        <p class='footer-link text-center'>
+            &#169;
+            <a href='https://github.com/grupythonUFLA/' rel='nofollow' title='Grupython UFLA'>
+                    Grupython UFLA
+                </a> 2014 | Powered By
+            <a href='http://www.web2py.com/' rel='nofollow' title='Web2py'>
                     Web2py
                 </a>
-            </p>
-        </footer>
+        </p>
+    </footer>
+    <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="{{=URL('static','js/jquery.js')}}"></script>
+</body>
 
-        <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
-        <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
-        <script src="{{=URL('static','js/jquery.js')}}"></script>
-    </body>
 </html>
