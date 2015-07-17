@@ -13,7 +13,12 @@ def noticias():
 
 
 def membros():
-    return dict()
+    membros = db(db.membros).select()
+    linhas = (len(membros) % 3) or 1
+    return {
+        'membros': membros,
+        'linhas': linhas
+    }
 
 
 def eventos():
