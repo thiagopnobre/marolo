@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+from plugin_ckeditor import CKEditor
+from gluon.tools import Auth
+from gluon.tools import prettydate
+
 
 db = DAL('sqlite://storage.sqlite', pool_size=1, check_reserved=['all'])
 
@@ -6,7 +10,6 @@ db = DAL('sqlite://storage.sqlite', pool_size=1, check_reserved=['all'])
 # none otherwise. a pattern can be 'controller/function.extension'
 response.generic_patterns = ['*'] if request.is_local else []
 
-from gluon.tools import Auth
 auth = Auth(db, controller='admin', function='user')
 
 # create all tables needed by auth if not custom tables
@@ -18,15 +21,14 @@ auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
 # auth settings
-auth.settings.login_next = URL('admin','listar',args=['noticias'])
-auth.settings.logout_next = URL('default','index')
-from gluon.tools import prettydate
+auth.settings.login_next = URL('admin', 'listar', args=['noticias'])
+auth.settings.logout_next = URL('default', 'index')
 
 # modelo de dados
 db.define_table(
     'noticias',
     Field('titulo', length=128, notnull=True, unique=True),
-    Field('resumo','text', length=256, notnull=True),
+    Field('resumo', 'text', length=256, notnull=True),
     Field('conteudo', 'text', notnull=True),
     Field(
         'data_hora',
@@ -106,20 +108,20 @@ db.define_table(
 )
 
 
-
 # Plugin
-from plugin_ckeditor import CKEditor
 ckeditor = CKEditor(db)
 ckeditor.define_tables()
 db.projeto.sobre.widget = ckeditor.widget
 db.noticias.conteudo.widget = ckeditor.widget
 db.associacao.sobre.widget = ckeditor.widget
 db.eventos.descricao.widget = ckeditor.widget
-db.noticias.permalink.compute = lambda registro:IS_SLUG()(registro.titulo)[0]
+db.noticias.permalink.compute = lambda registro: IS_SLUG()(registro.titulo)[0]
 auth.settings.formstyle = 'bootstrap3_stacked'
 
-parceiros = db(db.apoiadores.tipo == 'parceiro').select()
-apoiadores = db(db.apoiadores.tipo == 'apoiador').select()
-patrocinadores = db(db.apoiadores.tipo == 'patrocinador').select()
-
-
+apoiadores_geral = db(db.apoiadores).select()
+parceiros = [apoiador for apoiador in apoiadores_geral
+             if apoiador.tipo == 'parceiro']
+patrocinadores = [apoiador for apoiador in apoiadores_geral
+                  if apoiador.tipo == 'patrocinador']
+apoiadores = [apoiador for apoiador in apoiadores_geral
+              if apoiador.tipo == 'apoiador']

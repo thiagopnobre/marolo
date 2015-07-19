@@ -22,11 +22,27 @@ def membros():
 
 
 def eventos():
-    return dict()
+    ano_atual = request.vars.ano or request.now.year
+    ano_atual = int(ano_atual)
+    eventos = db(db.eventos.data_hora.year() == ano_atual).select()
+    if not eventos:
+        session.flash = T('Não há eventos cadastrados ainda!')
+        redirect('index')
+    minimo = db.eventos.data_hora.min()
+    menor_ano = db().select(minimo).first()[minimo].year
+    anos_anteriores = []
+    for subtrator in range(1, 4):
+        ano_anterior = ano_atual - subtrator
+        if ano_anterior >= menor_ano:
+            anos_anteriores.append(ano_anterior)
+    return {
+        'eventos': eventos,
+        'ano_atual': ano_atual,
+        'anos_anteriores': anos_anteriores
+    }
 
 
 def contato():
-    # TODO: feedback user
     form = FORM(
         P(
             INPUT(

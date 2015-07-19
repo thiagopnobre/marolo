@@ -119,6 +119,7 @@
 'new record inserted': 'novo registro inserido',
 'next 100 rows': 'próximas 100 linhas',
 'No databases in this application': 'Sem bancos de dados nesta aplicação',
+'Não há eventos cadastrados ainda!': 'Não há eventos cadastrados ainda!',
 'Object or table name': 'Object or table name',
 'Old password': 'Old password',
 'Online examples': 'Alguns exemplos',
