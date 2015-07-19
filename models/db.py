@@ -64,20 +64,6 @@ db.define_table(
 )
 
 db.define_table(
-    'projeto',
-    Field('nome', length=64, notnull=True),
-    Field('email', requires=IS_EMAIL(), notnull=True),
-    Field('sobre', 'text', notnull=True)
-)
-
-db.define_table(
-    'associacao',
-    Field('nome', length=64, notnull=True),
-    Field('email', requires=IS_EMAIL(), notnull=True),
-    Field('sobre', 'text', notnull=True)
-)
-
-db.define_table(
     'eventos',
     Field('nome', length=128),
     Field(
