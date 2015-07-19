@@ -33,8 +33,9 @@ db.define_table(
     Field(
         'data_hora',
         'datetime',
+        readable=False,
+        writable=False,
         default=request.now,
-        notnull=True
     ),
     Field(
         'permalink',
@@ -97,9 +98,7 @@ db.define_table(
 # Plugin
 ckeditor = CKEditor(db)
 ckeditor.define_tables()
-db.projeto.sobre.widget = ckeditor.widget
 db.noticias.conteudo.widget = ckeditor.widget
-db.associacao.sobre.widget = ckeditor.widget
 db.eventos.descricao.widget = ckeditor.widget
 db.noticias.permalink.compute = lambda registro: IS_SLUG()(registro.titulo)[0]
 auth.settings.formstyle = 'bootstrap3_stacked'
