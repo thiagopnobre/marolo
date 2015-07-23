@@ -1,6 +1,7 @@
 def index():
     redirect(URL(c='admin', f='user'))
 
+
 def user():
     """
     exposes:

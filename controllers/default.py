@@ -21,6 +21,14 @@ def membros():
     }
 
 
+def associacao():
+    return {}
+
+
+def projeto():
+    return {}
+
+
 def eventos():
     ano_atual = request.vars.ano or request.now.year
     ano_atual = int(ano_atual)
