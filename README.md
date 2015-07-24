@@ -1,5 +1,5 @@
-Site Projeto Marolo
-===================
+Marolo
+======
 
 Projeto desenvolvido pelo Grupython UFLA
 
@@ -28,3 +28,4 @@ O que deve conter no projeto
 - Contatos
 
   - infromação do contato com o projeto
+
