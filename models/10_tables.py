@@ -64,6 +64,6 @@ db.define_table(
         length=64,
         requires=IS_IN_SET(['patrocinador', 'parceiro', 'apoiador'])
     ),
-    Field('imagem', 'upload', notnull=True),
+    Field('imagem', 'upload'),
     Field('url', requires=IS_URL(), notnull=True)
 )
