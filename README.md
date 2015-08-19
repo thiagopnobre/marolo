@@ -1,9 +1,15 @@
-Site Projeto Marolo
-===================
+Marolo
+======
 
-Projeto desenvolvido pelo Grupython UFLA
+Projeto inicialmente desenvolvido pelo Grupython UFLA, com intuito de
+agregar conhecimento aos participantes do grupo e ajudar membros de
+um grupo de estudo da universidade, mas com o tempo acabou sendo abandonado.
 
-Desenvolvimento de um site utilizando o Web2py, para o Projeto Marolo de Minas Gerais
+Hoje, apenas uma ferrramenta de estudo e aprimoramento de conhecimento,
+aberta a contribuições. O intuito da continuação do projeto de forma aberta
+é servir como referências a iniciantes  em web2py assim como um ótimo
+ponto de aprendizado para quem está começando ou está querendo se aprimorar
+neste framework.
 
 O que deve conter no projeto
 ----------------------------
@@ -27,4 +33,36 @@ O que deve conter no projeto
 
 - Contatos
 
-  - infromação do contato com o projeto
+  - informação do contato com o projeto
+
+- Deve haver uma área para apoiadores, patrocinadores e parceiro
+- Área para exposição de materiais desenvolvidos com marolo
+
+Instalação
+----------
+
+- Baixe o repositório git
+- Extraia na pasta applications do web2py
+- copie o arquivo welcome/private/appconfig.ini
+- (sudo) pip install -r requirements.txt
+- Execute o web2py e a aplicação já estará rodando
+
+FAQ
+---
+
+**Segui todos passos, iniciando por baixar o .zip no github,
+mas a aplicação não aparece?**
+
+**R:** Baixar o repositório compactado, traz uma nomeclatura com traços,
+o que faz com que o web2py não reconheça a aplicação. Modifique o nome
+da pasta para algo não contendo este caracter. Uma mudança simples é
+transforma-lo em `_`.
+
+**Um dos requisitos é a pillow, como proceder a instalação da mesma?**
+
+**R:** A biblioteca pillow pode ser instalada através do gerenciador de
+pacotes pip. Ou através de pacote específico como no Ubuntu o python-imaging.
+Caso decida instalar via pip alguns problemas podem surgir.
+Se utiliza Ubuntu recomendo ler
+[este](http://cassiobotaro.github.io/instalando-pillow.html) tutorial,
+mas independente da plataforma ao fim deste post, eu aponto links úteis.
