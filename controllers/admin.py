@@ -26,7 +26,8 @@ def inserir():
     if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores'):
         redirect(URL('default', 'index'))
     form = SQLFORM(
-        db[argumento], submit_button="Enviar", formstyle='bootstrap3_stacked')
+        db[argumento], submit_button="Enviar",
+        formstyle='bootstrap3_stacked')
     if form.process().accepted:
         response.flash = 'Registro inserido com sucesso!'
     elif form.errors:
@@ -55,7 +56,7 @@ def editar():
         cod,
         deletable=argumento not in ('projeto', 'associacao'),
         showid=False, submit_button="Enviar",
-        formstyle="bootstrap3_stacked"
+        upload=URL('default', 'download'), formstyle="bootstrap3_stacked"
     )
 
     if form.process().accepted:

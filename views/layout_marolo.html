@@ -16,7 +16,7 @@
     <nav class="navbar" id="menu-topo" role="navigation">
         <div class='container'>
             <div class='navbar-header'>
-                <a class='navbar-brand' href='{{=URL ("default", "index")}}'>
+                <a class='navbar-brand visible-xs' href='{{=URL ("default", "index")}}'>
                     <i class='fa fa-home'></i>
                 </a>
                 <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button'>
@@ -54,7 +54,12 @@
                     <div class="col-md-2 text-center">
                         <a href="#">
                             <!-- url parceiro  -->
-                            <img class="img-thumbnail" alt="news" src="{{=URL('download', args=[parceiro['imagem']])}}">
+                            {{if parceiro['imagem']:}}
+                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['imagem']])}}" alt="news"></img>
+                            {{else:}}
+                            <i class="fa fa-thumbs-o-up fa-5x"></i>
+                            <p>{{=parceiro['nome']}}</p>
+                            {{pass}}
                         </a>
                     </div>
                     {{pass}} {{pass}}
@@ -65,7 +70,12 @@
                     <div class="col-md-2 text-center">
                         <a href="#">
                             <!-- url apoiador  -->
-                            <img class="img-thumbnail" alt="news" src="{{=URL('download', args=[apoiador['imagem']])}}">
+                            {{if apoiador['imagem']:}}
+                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['imagem']])}}" alt="news"></img>
+                            {{else:}}
+                            <i class="fa fa-heart-o fa-5x"></i>
+                            <p>{{=apoiador['nome']}}</p>
+                            {{pass}}
                         </a>
                     </div>
                     {{pass}}
@@ -77,10 +87,14 @@
         <aside class="col-md-2 col-xs-12" id="patrocinadores">
             {{if patrocinadores:}}
             <h4 class="text-center ">Patrocinadores</h4> {{for patrocinador in patrocinadores:}}
-            <div class="patrocinador">
+            <div class="text-center patrocinador">
                 <a href="#">
                     <!-- url patrocinador  -->
+                    {{if patrocinador['imagem']:}}
                     <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['imagem']])}}" alt="news"></img>
+                    {{else:}}
+                    <i class="fa fa-leaf fa-5x"></i>
+                    {{pass}}
                 </a>
                 <hr />
                 <a href="#">
