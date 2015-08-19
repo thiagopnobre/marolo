@@ -32,8 +32,7 @@ O que deve conter no projeto
   - informações de eventos realizados
 
 - Contatos
-
-  - informação do contato com o projeto
+  - infromação do contato com o projeto
 
 - Deve haver uma área para apoiadores, patrocinadores e parceiro
 - Área para exposição de materiais desenvolvidos com marolo

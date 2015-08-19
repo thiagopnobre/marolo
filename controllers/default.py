@@ -2,8 +2,7 @@
 
 
 def index():
-    noticias = db(db.noticias.status == "publicado").select(
-        orderby=~db.noticias.data_hora)
+    noticias = db(db.noticias.status == "publicado").select()
     return dict(noticias=noticias)
 
 
@@ -13,11 +12,18 @@ def noticias():
 
 
 def membros():
-    membros = db(db.membros).select()
-    linhas = (len(membros) % 3) or 1
+    membros = db(db.membros).select().as_list()
+    linhas = (len(membros) // 3) + 1
+    matriz = []
+    for _ in range(linhas):
+        aux = []
+        cont = 0
+        while cont < 3 and membros:
+            aux.append(membros.pop(0))
+            cont += 1
+        matriz.append(aux)
     return {
-        'membros': membros,
-        'linhas': linhas
+        'matriz': matriz
     }
 
 

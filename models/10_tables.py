@@ -1,69 +1,40 @@
-# modelo de dados
+# -*- coding: utf-8 -*-
+# Notícias
 db.define_table(
     'noticias',
     Field('titulo', length=128, notnull=True, unique=True),
-    Field('resumo', 'text', length=256, notnull=True),
-    Field('conteudo', 'text', notnull=True),
-    Field(
-        'data_hora',
-        'datetime',
-        readable=False,
-        writable=False,
-        default=request.now,
-    ),
-    Field(
-        'permalink',
-        notnull=True,
-        unique=True,
-    ),
-    Field(
-        'foto',
-        'upload',
-        requires=IS_EMPTY_OR(IS_IMAGE(error_message='Insira uma imagem!'))
-    ),
-    Field(
-        'status',
-        requires=IS_IN_SET(['publicado', 'não publicado'])
-    )
+    Field('resumo', length=128, notnull=True),
+    Field('conteudo', 'text', length=5000, notnull=True),
+    Field('permalink', notnull=True, unique=True),
+    Field('foto', 'upload'),
+    Field('thumbnail', 'upload'),
+    Field('status'),
+    auth.signature
 )
-
+# Membros
 db.define_table(
     'membros',
-    Field('nome', length=64, notnull=True),
-    Field(
-        'foto',
-        'upload',
-        requires=IS_EMPTY_OR(IS_IMAGE(error_message='Insira uma imagem!'))
-    ),
-    Field('email', requires=IS_EMAIL())
+    Field('nome', length=64, notnull=True, unique=True),
+    Field('foto', 'upload'),
+    Field('email', notnull=True)
 )
-
+# Eventos
 db.define_table(
     'eventos',
-    Field('nome', length=128),
-    Field(
-        'data_hora',
-        'datetime',
-        default=request.now,
-        notnull=True
-    ),
-    Field('localizacao', notnull=True),
-    Field('descricao', 'text', notnull=True),
-    Field(
-        'banner',
-        'upload',
-        requires=IS_EMPTY_OR(IS_IMAGE(error_message='Insira uma imagem!'))
-    )
+    Field('nome', length=128, notnull=True),
+    Field('dia', 'date', notnull=True),
+    Field('horario_inicio', 'time', label=T('Inicio'), notnull=True),
+    Field('horario_fim', 'time', label=T('Término'), notnull=True),
+    Field('endereco', length=128, label=T('Endereço'), notnull=True),
+    Field('descricao', length=256, label=T('Descrição'), notnull=True),
+    Field('banner', 'upload'),
+    Field('banner_thumb', 'upload')
 )
-
+# Apoiadores
 db.define_table(
     'apoiadores',
     Field('nome', length=64, notnull=True),
-    Field(
-        'tipo',
-        length=64,
-        requires=IS_IN_SET(['patrocinador', 'parceiro', 'apoiador'])
-    ),
-    Field('imagem', 'upload', notnull=True),
-    Field('url', requires=IS_URL(), notnull=True)
+    Field('tipo', notnull=True),
+    Field('logo', 'upload'),
+    Field('url', length=256, notnull=True),
 )
