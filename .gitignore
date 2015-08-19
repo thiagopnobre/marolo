@@ -51,10 +51,13 @@ nosetests.xml
 *.table
 
 # web2py cache, errors and sessions files
-cache/*
-errors/*
-sessions/*
-uploads/*
-databases/*
+cache/**
+errors/**
+sessions/**
+uploads/**
+databases/**
+languages/**
+private/**
+cron/**
 
 # project ignored files
