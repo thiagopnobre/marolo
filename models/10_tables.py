@@ -36,5 +36,6 @@ db.define_table(
     Field('nome', length=64, notnull=True),
     Field('tipo', notnull=True),
     Field('logo', 'upload'),
+    Field('logo_thumb', 'upload'),
     Field('url', length=256, notnull=True),
 )

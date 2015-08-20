@@ -90,9 +90,10 @@ db.apoiadores.logo.requires = [
     ),
     IS_LENGTH(100 * 1024,  # 100kb
               error_message=T('Arquivo muito grande!'
-                              'Tamanho máximo permitido é 100kb')),
-    IS_EMPTY_OR(RESIZE(200, 200))
+                              'Tamanho máximo permitido é 100kb'))
 ]
+db.apoiadores.logo_thumb.compute = lambda registro: SMARTHUMB(registro.logo,
+                                                              (200, 200))
 db.apoiadores.url.requires = [
     IS_NOT_EMPTY(error_message=T('Este campo não pode ficar vazio!')),
     IS_LENGTH(256, error_message=T('Tamanho máximo de 256 caracteres.')),

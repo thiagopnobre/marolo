@@ -54,8 +54,8 @@
                     <div class="col-md-2 text-center">
                         <a href="#">
                             <!-- url parceiro  -->
-                            {{if parceiro['logo']:}}
-                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo']])}}" alt="news"></img>
+                            {{if parceiro['logo_thumb']:}}
+                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}" alt="news"></img>
                             {{else:}}
                             <i class="fa fa-thumbs-o-up fa-5x"></i>
                             <p>{{=parceiro['nome']}}</p>
@@ -70,8 +70,8 @@
                     <div class="col-md-2 text-center">
                         <a href="#">
                             <!-- url apoiador  -->
-                            {{if apoiador['logo']:}}
-                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo']])}}" alt="news"></img>
+                            {{if apoiador['logo_thumb']:}}
+                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}" alt="news"></img>
                             {{else:}}
                             <i class="fa fa-heart-o fa-5x"></i>
                             <p>{{=apoiador['nome']}}</p>
@@ -90,8 +90,8 @@
             <div class="text-center patrocinador">
                 <a href="#">
                     <!-- url patrocinador  -->
-                    {{if patrocinador['logo']:}}
-                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo']])}}" alt="news"></img>
+                    {{if patrocinador['logo_thumb']:}}
+                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
                     {{else:}}
                     <i class="fa fa-leaf fa-5x"></i>
                     {{pass}}
