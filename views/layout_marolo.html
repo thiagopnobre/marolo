@@ -52,7 +52,7 @@
                     {{if parceiros:}}
                     <h4>Parceiros</h4> {{for parceiro in parceiros:}}
                     <div class="col-md-2 text-center">
-                        <a href="#">
+                        <a href="{{=parceiro['url']}}" target="_blank">
                             <!-- url parceiro  -->
                             {{if parceiro['logo_thumb']:}}
                             <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}" alt="news"></img>
@@ -68,7 +68,7 @@
                 <div class="row">
                     <h4>Apoiadores</h4> {{for apoiador in apoiadores:}}
                     <div class="col-md-2 text-center">
-                        <a href="#">
+                        <a href="{{=apoiador['url']}}" target="_blank">
                             <!-- url apoiador  -->
                             {{if apoiador['logo_thumb']:}}
                             <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}" alt="news"></img>
@@ -88,7 +88,7 @@
             {{if patrocinadores:}}
             <h4 class="text-center ">Patrocinadores</h4> {{for patrocinador in patrocinadores:}}
             <div class="text-center patrocinador">
-                <a href="#">
+                <a href="{{=patrocinador['url']}}" target="_blank">
                     <!-- url patrocinador  -->
                     {{if patrocinador['logo_thumb']:}}
                     <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
@@ -97,7 +97,7 @@
                     {{pass}}
                 </a>
                 <hr />
-                <a href="#">
+                <a href="{{=patrocinador['url']}}" target="_blank">
                     <!-- url patrocinador  -->
                     <!-- o nome do apoiador deve ser polido no lado do servidor -->
                     <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
@@ -111,7 +111,7 @@
             &#169;
             <a href='https://github.com/grupythonUFLA/' rel='nofollow' title='Grupython UFLA'>
                     Grupython UFLA
-                </a> 2014 | Powered By
+                </a> {{=request.now.year}} | Powered By
             <a href='http://www.web2py.com/' rel='nofollow' title='Web2py'>
                     Web2py
                 </a>
