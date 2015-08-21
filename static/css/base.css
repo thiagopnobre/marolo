@@ -73,6 +73,9 @@ textarea{
 }
 
 footer {
+    position: absolute !important;
+    width: 100%;
+    bottom: 0;
     border-top: 1px solid #DDD;
     padding-top: 5px;
     color: white;
