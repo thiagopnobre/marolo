@@ -44,8 +44,16 @@ textarea{
     background-color: #53341E;
 }
 
+#menu-button {
+    border: 3px solid #5AAC41;
+}
+
 #patrocinadores h4{
     margin-top: 0;
+}
+
+.icon-bar {
+    background-color: white !important;
 }
 
 .patrocinador {
