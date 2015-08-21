@@ -61,3 +61,4 @@ private/**
 cron/**
 
 # project ignored files
+.pythonhistory
