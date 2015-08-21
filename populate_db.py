@@ -65,7 +65,7 @@ for i in xrange(1, 11):
 for i in xrange(10):
     tipo = 'patrocinador'
     if i > 5:
-        tipo = 'apoaidor'
+        tipo = 'apoiador'
     elif i > 1:
         tipo = 'parceiro'
     db.apoiadores.insert(**{
