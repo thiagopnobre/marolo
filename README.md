@@ -44,6 +44,7 @@ Instalação
 - Extraia na pasta applications do web2py
 - copie o arquivo welcome/private/appconfig.ini
 - (sudo) pip install -r requirements.txt
+- No diretório raiz do web2py execute: `./web2py.py  -S marolo -M -R applications/marolo/populate_db.py ` para popular o banco de dados (necessário somente uma vez)
 - Execute o web2py e a aplicação já estará rodando
 
 FAQ
