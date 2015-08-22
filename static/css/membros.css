@@ -1,5 +1,6 @@
-#menu-topo #menu-membros{
+#menu-topo #menu-membros {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }
 
 #membros {

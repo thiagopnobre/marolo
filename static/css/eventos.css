@@ -115,20 +115,21 @@
     font-size: 1.3em;
 }
 
-.anos-anteriores li{
+.anos-anteriores li {
     list-style: none;
 }
 
-.anos-anteriores a{
+.anos-anteriores a {
     color: #5AAC41;
     text-decoration: none;
 }
 
-.fa-calendar-custom{
+.fa-calendar-custom {
     color: #5AAC41;
     margin-right: 5px;
 }
 
-#menu-topo #menu-eventos{
+#menu-topo #menu-eventos {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }

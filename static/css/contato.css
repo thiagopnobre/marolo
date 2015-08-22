@@ -1,19 +1,22 @@
-#menu-topo #menu-contato{
+#menu-topo #menu-contato {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }
 
-.contato{
+.contato {
     margin-bottom: 10px;
     padding: 10px 20px;
     border-radius: 3px;
     background-color: white;
 }
 
-.email, .assunto, .mensagem{
+.email,
+.assunto,
+.mensagem {
     width: 50%;
 }
 
-.btn-contato{
+.btn-contato {
     padding-left: 25px;
     padding-right: 25px;
 }

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
 }
@@ -7,11 +8,16 @@ body {
     background-color: #EAEADF;
 }
 
-textarea{
-    resize:none;
+textarea {
+    resize: none;
 }
 
-.admin-content{
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: #402817;
+}
+
+.admin-content {
     background-color: white;
     padding: 10px;
 }
@@ -27,8 +33,8 @@ textarea{
 }
 
 #menu-topo a {
-    text-decoration:none;
-    background-color:none;
+    text-decoration: none;
+    background-color: none;
 }
 
 #menu-topo a:link {
@@ -41,6 +47,7 @@ textarea{
 
 #menu-topo a:hover {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
     background-color: #53341E;
 }
 
@@ -48,7 +55,7 @@ textarea{
     border: 3px solid #5AAC41;
 }
 
-#patrocinadores h4{
+#patrocinadores h4 {
     margin-top: 0;
 }
 
@@ -64,8 +71,8 @@ textarea{
     background-color: white;
 }
 
-.patrocinador a{
-    text-decoration:none;
+.patrocinador a {
+    text-decoration: none;
 }
 
 .patrocinador img {
@@ -74,7 +81,7 @@ textarea{
     border-radius: 0;
 }
 
-#parceiros_apoiadores{
+#parceiros_apoiadores {
     padding: 10px 20px;
     border-radius: 3px;
     background-color: white;
@@ -87,10 +94,10 @@ footer {
     background-color: #402817;
 }
 
-.footer-link a{
+.footer-link a {
     color: #5AAC41;
 }
 
-.footer-link a:hover{
-    text-decoration:none;
+.footer-link a:hover {
+    text-decoration: none;
 }

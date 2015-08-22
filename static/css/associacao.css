@@ -1,5 +1,6 @@
-#menu-topo #menu-associacao{
+#menu-topo #menu-associacao {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }
 
 #sobre_associacao {

@@ -1,5 +1,6 @@
-#menu-topo #menu-projeto{
+#menu-topo #menu-projeto {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }
 
 #sobre_projeto {

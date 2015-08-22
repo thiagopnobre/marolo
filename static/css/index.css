@@ -1,5 +1,6 @@
-#menu-topo #menu-inicio{
+#menu-topo #menu-inicio {
     color: #5AAC41;
+    border-bottom: 5px solid #5AAC41;
 }
 
 .post-div {
@@ -34,6 +35,6 @@
     margin-bottom: 10px;
 }
 
-.big-icon{
-   font-size:8em;
+.big-icon {
+    font-size: 8em;
 }
