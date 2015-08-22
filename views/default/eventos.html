@@ -8,8 +8,8 @@
     {{for evento in eventos:}}
     <div class="row timeline-movement">
         <div class="timeline-badge">
-            <span class="timeline-balloon-date-day">{{=evento.data_hora.day}}</span>
-            <span class="timeline-balloon-date-month">{{=evento.data_hora.strftime('%b').upper()}}</span>
+            <span class="timeline-balloon-date-day">{{=evento.dia.strftime('%d')}}</span>
+            <span class="timeline-balloon-date-month">{{=evento.dia.strftime('%b').upper()}}</span>
         </div>
 
 
@@ -19,7 +19,7 @@
                     <ul class="timeline-panel-ul">
                         <li><span class="importo">{{=evento.nome}}</span></li>
                         <li><span class="causale">{{=XML(evento.descricao)}} </span> </li>
-                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{=evento.data_hora.strftime('%d/%m/%Y')}}</small></p> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{=evento.dia.strftime('%d/%m/%Y')}} - {{=evento.horario_inicio}}</small></p> </li>
                     </ul>
                 </div>
             </div>

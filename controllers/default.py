@@ -38,11 +38,11 @@ def projeto():
 def eventos():
     ano_atual = request.vars.ano or request.now.year
     ano_atual = int(ano_atual)
-    eventos = db(db.eventos.data_hora.year() == ano_atual).select()
+    eventos = db(db.eventos.dia.year() == ano_atual).select()
     if not eventos:
         session.flash = T('Não há eventos cadastrados ainda!')
         redirect('index')
-    minimo = db.eventos.data_hora.min()
+    minimo = db.eventos.dia.min()
     menor_ano = db().select(minimo).first()[minimo].year
     anos_anteriores = []
     for subtrator in range(1, 4):
