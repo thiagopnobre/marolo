@@ -36,23 +36,29 @@ def projeto():
 
 
 def eventos():
-    ano_atual = request.vars.ano or request.now.year
-    ano_atual = int(ano_atual)
-    eventos = db(db.eventos.dia.year() == ano_atual).select()
-    if not eventos:
-        session.flash = T('Não há eventos cadastrados ainda!')
-        redirect('index')
+    parametro_ano = request.args(0, cast=int, default=request.now.year)
+    ano_atual = request.now.year
+    eventos = db(db.eventos.dia.year() == parametro_ano).select()
     minimo = db.eventos.dia.min()
-    menor_ano = db().select(minimo).first()[minimo].year
+    maximo = db.eventos.dia.max()
+    extremos = db().select(maximo, minimo).first()
+    menor_ano = extremos[minimo].year
+    maior_ano = extremos[maximo].year
     anos_anteriores = []
+    anos_posteriores = []
+    for incremento in range(3, 0, -1):
+        ano_posterior = parametro_ano + incremento
+        if (ano_posterior <= maior_ano) or (ano_posterior <= ano_atual):
+            anos_posteriores.append(ano_posterior)
     for subtrator in range(1, 4):
-        ano_anterior = ano_atual - subtrator
+        ano_anterior = parametro_ano - subtrator
         if ano_anterior >= menor_ano:
             anos_anteriores.append(ano_anterior)
     return {
         'eventos': eventos,
-        'ano_atual': ano_atual,
-        'anos_anteriores': anos_anteriores
+        'ano': parametro_ano,
+        'anos_anteriores': anos_anteriores,
+        'anos_posteriores': anos_posteriores,
     }
 
 

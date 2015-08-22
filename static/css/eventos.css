@@ -115,11 +115,13 @@
     font-size: 1.3em;
 }
 
-.anos-anteriores li {
+.anos-anteriores li,
+.anos-posteriores li {
     list-style: none;
 }
 
-.anos-anteriores a {
+.anos-anteriores a,
+.anos-posteriores a {
     color: #5AAC41;
     text-decoration: none;
 }

@@ -3,8 +3,13 @@
     <link href="{{=URL('static','css/eventos.css')}}" rel="stylesheet">
 {{end}}
 {{block conteudo}}
-<h3 class="text-center">{{=ano_atual}}</h3>
+<h3 class="text-center">{{=ano}}</h3>
 <div id="timeline">
+    <ul class="anos-posteriores">
+        {{for ano in anos_posteriores:}}
+        <li><i class="fa fa-calendar fa-calendar-custom"></i><a href="{{=URL('eventos', args=ano)}}">{{=ano}}</a></li>
+        {{pass}}
+    </ul>
     {{for evento in eventos:}}
     <div class="row timeline-movement">
         <div class="timeline-badge">
@@ -19,7 +24,7 @@
                     <ul class="timeline-panel-ul">
                         <li><span class="importo">{{=evento.nome}}</span></li>
                         <li><span class="causale">{{=XML(evento.descricao)}} </span> </li>
-                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{=evento.dia.strftime('%d/%m/%Y')}} - {{=evento.horario_inicio}}</small></p> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{=evento.horario_inicio}}</small></p> </li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +34,7 @@
     {{pass}}
     <ul class="anos-anteriores">
         {{for ano in anos_anteriores:}}
-        <li><i class="fa fa-calendar fa-calendar-custom"></i><a href="{{=URL('eventos', vars={'ano': ano})}}">{{=ano}}</a></li>
+        <li><i class="fa fa-calendar fa-calendar-custom"></i><a href="{{=URL('eventos', args=ano)}}">{{=ano}}</a></li>
         {{pass}}
     </ul>
 </div>
