@@ -2,6 +2,7 @@
 {{block head}}
     <link href="{{=URL('static','css/eventos.css')}}" rel="stylesheet">
 {{end}}
+{{block conteudo}}
 <h3 class="text-center">{{=ano_atual}}</h3>
 <div id="timeline">
     {{for evento in eventos:}}
@@ -32,4 +33,4 @@
         {{pass}}
     </ul>
 </div>
-
+{{end}}

@@ -2,6 +2,7 @@
 {{block head}}
     <link href="{{=URL('static','css/index.css')}}" rel="stylesheet">
 {{end}}
+{{block conteudo}}
 {{for noticia in noticias:}}
 <div class="post-div">
     <h2 class='title'>{{=noticia.titulo}}</h2>
@@ -25,3 +26,4 @@
     </div>
 </div>
 {{pass}}
+{{end}}

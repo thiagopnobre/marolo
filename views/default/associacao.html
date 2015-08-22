@@ -4,6 +4,8 @@
     <link href="{{=URL('static','css/associacao.css')}}" rel="stylesheet">
 {{end}}
 
-<div id="sobre_associacao">
-    {{include 'default/sobre_associacao.html'}}
-</div>
+{{block conteudo}}
+    <div id="sobre_associacao">
+        {{include 'default/sobre_associacao.html'}}
+    </div>
+{{end}}
