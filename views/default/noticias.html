@@ -1,6 +1,7 @@
 {{extend 'layout_marolo.html'}}
 
 
+{{block conteudo}}
 <div class="post-div">
     <h2 class='title'>{{=noticia.titulo}}</h2>
     <small class='pull-left text-muted'>Publicado: {{=prettydate(noticia.modified_on)}}</small>
@@ -14,3 +15,4 @@
         </div>
     </div>
 </div>
+{{end}}
