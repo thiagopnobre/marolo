@@ -2,6 +2,10 @@
     color: #5AAC41;
 }
 
+#mobile-button {
+    text-align: center;
+}
+
 .post-div {
     background: #fff;
     margin: 0 0 20px;
