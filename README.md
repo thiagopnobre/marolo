@@ -38,7 +38,7 @@ O que deve conter no projeto
 - Área para exposição de materiais desenvolvidos com marolo
 
 
-![Screenshot](../static/images/screenshot.png?raw=true)
+![Screenshot](static/images/screenshot.png?raw=true)
 
 
 
