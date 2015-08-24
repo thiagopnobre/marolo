@@ -37,6 +37,11 @@ O que deve conter no projeto
 - Deve haver uma área para apoiadores, patrocinadores e parceiro
 - Área para exposição de materiais desenvolvidos com marolo
 
+
+![Screenshot](static/images/screenshot.gif?raw=true)
+
+
+
 Instalação
 ----------
 
