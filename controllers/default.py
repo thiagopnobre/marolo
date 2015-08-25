@@ -3,8 +3,22 @@ from default.contato.forms import form_contato
 
 
 def index():
-    noticias = db(db.noticias.status == "publicado").select()
-    return dict(noticias=noticias)
+    pagina = request.args(0, cast=int, default=1)
+    itens_por_pagina = 5
+    total = db(db.noticias).count()
+    paginas = total / itens_por_pagina
+    if total % itens_por_pagina:
+        paginas += 1
+    limites = (itens_por_pagina * (pagina - 1), (itens_por_pagina * pagina))
+    noticias = db(db.noticias.status == "publicado").select(
+        orderby=~db.noticias.created_on | ~db.noticias.modified_on,
+        limitby=limites
+    )
+    return {
+        'noticias': noticias,
+        'pagina': pagina,
+        'paginas': paginas
+    }
 
 
 def noticias():
@@ -75,8 +89,10 @@ def contato():
         )
     return dict(form=form)
 
+
 def produtos():
     return {}
+
 
 @cache.action()
 def download():

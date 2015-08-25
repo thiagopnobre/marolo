@@ -3,7 +3,7 @@
     <link href="{{=URL('static','css/index.css')}}" rel="stylesheet">
 {{end}}
 {{block conteudo}}
-{{for noticia in reversed(noticias):}}
+{{for noticia in noticias:}}
 <div class="post-div">
     <h2 class='title'>{{=noticia.titulo}}</h2>
     <div class="news row">
@@ -26,4 +26,20 @@
     </div>
 </div>
 {{pass}}
+<div id="paginacao">
+    <ul class="pager">
+        {{ if pagina != 1: }}
+        <li class="previous">
+            <a href="{{ =URL(args=pagina-1) }}">&larr; Anterior</a>
+        </li>
+        {{ pass }}
+
+        {{ if pagina != paginas: }}
+        <li class="next">
+            <a href="{{ =URL(args=pagina+1) }}">Próxima &rarr;</a>
+        </li>
+        {{ pass }}
+    </ul>
+<div>
+
 {{end}}
