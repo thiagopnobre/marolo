@@ -118,3 +118,14 @@ footer {
         margin-top: 10px;
     }
 }
+
+@media (min-width: 990px) {
+    .news article {
+        margin-left: 10px;
+    }
+
+    .news small {
+        margin-left: 10px;
+    }
+}
+
