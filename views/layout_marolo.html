@@ -19,7 +19,7 @@
         <div class='container'>
             <div class='navbar-header'>
                 <a class='navbar-brand visible-xs' href='{{=URL ("default", "index")}}'>
-                    <i class='fa fa-home'></i>
+                    <i class='fa fa-home' style="font-size:45px; margin-top:-10px"></i>
                 </a>
                 <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button' id="menu-button">
                     <span class='sr-only'>
@@ -47,7 +47,7 @@
     </nav>
     <div class="flash alert alert-dismissable">{{=response.flash or ''}}</div>
     <div class="container" id="body-content">
-        <section class="col-md-10 col-xs-12">
+        <section class="col-md-10 col-xs-12" id="apoiadores">
             {{block conteudo}}{{end}}
             {{if apoiadores or parceiros:}}
             <div class="row" id="parceiros_apoiadores">

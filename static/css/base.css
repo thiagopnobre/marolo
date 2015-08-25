@@ -30,6 +30,8 @@ textarea {
 #menu-topo {
     border-radius: 0;
     background-color: #402817;
+    padding: 20px;
+    font-size: 18px;
 }
 
 #menu-topo a {
@@ -54,8 +56,18 @@ textarea {
     border: 3px solid #5AAC41;
 }
 
+#mobile-button {
+    text-align: center;
+}
+
 #patrocinadores h4 {
     margin-top: 0;
+    font-weight: 700;
+}
+
+#apoiadores h4 {
+    font-weight: 700;
+    text-align: center;
 }
 
 .icon-bar {
@@ -99,4 +111,10 @@ footer {
 
 .footer-link a:hover {
     text-decoration: none;
+}
+
+@media (max-width: 990px) {
+    #patrocinadores h4 {
+        margin-top: 10px;
+    }
 }
