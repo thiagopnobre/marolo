@@ -113,6 +113,10 @@ footer {
     text-decoration: none;
 }
 
+.dropdown-menu {
+    background-color: #402817;
+}
+
 @media (max-width: 990px) {
     #patrocinadores h4 {
         margin-top: 10px;
