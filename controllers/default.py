@@ -75,6 +75,8 @@ def contato():
         )
     return dict(form=form)
 
+def produtos():
+    return {}
 
 @cache.action()
 def download():
