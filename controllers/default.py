@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from default.contato.forms import form_contato
 
 
 def index():
@@ -78,7 +77,6 @@ def eventos():
 
 
 def contato():
-    form = form_contato()
     if form.validate():
         campos = form.vars
         mail.send(
