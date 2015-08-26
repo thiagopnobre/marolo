@@ -5,6 +5,27 @@
 {{block conteudo}}
 <div class="text-center contato">
     <h3>Entre em contato conosco</h3>
-    {{=form}}
+    {{=form.custom.begin}}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {{=form.custom.widget.email}}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {{=form.custom.widget.assunto}}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            {{=form.custom.widget.mensagem}}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
+        </div>
+    </div>
+    {{=form.custom.end}}
 </div>
 {{end}}
