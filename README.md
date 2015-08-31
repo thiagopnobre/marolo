@@ -67,7 +67,7 @@ Dicas
 - Quando funcionalidade envolver estilo e/ou design do site, tente mandar imagem.
 - Quando reverter algum commit ou discordar de alguma funcionalidade, crie discussões apontando seus argumentos.
 - Mudanças que podem causar o interrompimento do funcionamento correto do site devem notificar todos os membros da equipe do Marolo.
-- Ao criar Issues, marque com tags relevantes.
+- Ao criar Issues, marque com tags relevantes. O mesmo vale para PR's.
 
 FAQ
 ---
