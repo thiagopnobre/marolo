@@ -23,7 +23,8 @@ def user():
 @auth.requires_login()
 def inserir():
     argumento = request.args(0) or redirect(URL('default', 'index'))
-    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores'):
+    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores',
+                         'produtos'):
         redirect(URL('default', 'index'))
     form = SQLFORM(
         db[argumento], submit_button="Enviar",
@@ -38,7 +39,8 @@ def inserir():
 @auth.requires_login()
 def listar():
     argumento = request.args(0) or redirect(URL('default', 'index'))
-    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores'):
+    if argumento not in ('noticias', 'membros', 'eventos',
+                         'apoiadores', 'produtos'):
         redirect(URL('default', 'index'))
     lista = db(db[argumento]).select()
     return dict(argumento=argumento, lista=lista)
@@ -48,7 +50,7 @@ def listar():
 def editar():
     argumento = request.args(0) or redirect(URL('default', 'index'))
     if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores',
-                         'projeto', 'associacao'):
+                         'produtos'):
         redirect(URL('default', 'index'))
     cod = request.args(1) or redirect(URL('default', 'index'))
     form = SQLFORM(
