@@ -39,3 +39,13 @@ db.define_table(
     Field('logo_thumb', 'upload'),
     Field('url', length=256, notnull=True),
 )
+# Produto
+db.define_table(
+    'produtos',
+    Field('nome', length=64, notnull=True),
+    Field('descricao', length=128, notnull=True),
+    Field('foto', 'upload'),
+    Field('thumb', 'upload'),
+    Field('preco', 'double')
+)
+

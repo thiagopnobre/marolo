@@ -99,3 +99,32 @@ db.apoiadores.url.requires = [
     IS_LENGTH(256, error_message=T('Tamanho máximo de 256 caracteres.')),
     IS_URL()
 ]
+
+# Produtos
+db.produtos.nome.requires = [
+    IS_NOT_EMPTY(
+        error_message=T('Este campo não pode ficar vazio!')),
+    IS_LENGTH(64, error_message=T('Tamanho máximo de 64 caracteres.'))
+]
+db.produtos.descricao.requires = [
+    IS_NOT_EMPTY(
+        error_message=T('Este campo não pode ficar vazio!')),
+    IS_LENGTH(128, error_message=T('Tamanho máximo de 128 caracteres.'))
+]
+db.produtos.foto.requires = [
+    IS_EMPTY_OR(
+        IS_IMAGE(error_message=T('Arquivo enviado deve ser uma imagem.'))
+    ),
+    IS_LENGTH(100 * 1024,  # 100kb
+              error_message=T('Arquivo muito grande!'
+                              'Tamanho máximo permitido é 100kb'))
+]
+db.produtos.thumb.compute = lambda registro: SMARTHUMB(registro.foto,
+                                                       (200, 200))
+db.produtos.preco.requires = IS_EMPTY_OR(IS_FLOAT_IN_RANGE(
+    minimum=0.1,
+    dot=',',
+    error_message=T('Valor inválido para preço. '
+                    'Quando especificado deve ser maior do que 0'
+                    ' e no formato 2,50.')
+))
