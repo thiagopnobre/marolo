@@ -48,4 +48,3 @@ db.define_table(
     Field('thumb', 'upload'),
     Field('preco', 'double')
 )
-
