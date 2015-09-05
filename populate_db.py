@@ -10,6 +10,24 @@ db.auth_user.insert(**{
     'c9fc611937c6269b2ab9c3ab46'  # 123456
 })
 
+# Regras dos administradores
+db.auth_group.insert(**{
+    'role': 'admin',
+    'description': 'Responsavel por administar o sistema.'
+})
+
+db.auth_group.insert(**{
+    'role': 'editor',
+    'description': 'Tem somente permissão para editar e criar noticias e'
+    ' eventos.'
+})
+
+# atribui a conta marolo_admin a regra de admin
+db.auth_membership.insert(**{
+    'user_id': 1,
+    'group_id': 1
+})
+
 # Notícias
 for i in xrange(11):
     db.noticias.insert(**{

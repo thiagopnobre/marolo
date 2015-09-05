@@ -23,9 +23,12 @@ def user():
 @auth.requires_login()
 def inserir():
     argumento = request.args(0) or redirect(URL('default', 'index'))
-    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores',
-                         'produtos'):
-        redirect(URL('default', 'index'))
+    lista_tabelas = ['noticias', 'eventos', 'produtos']
+    if auth.has_membership('admin'):
+        lista_tabelas.extend(['membros', 'apoiadores'])
+    if argumento not in lista_tabelas:
+        response.flash = T('Operação não permitida a seu usuário.')
+        redirect(URL('admin', 'listar', args='noticias'))
     form = SQLFORM(
         db[argumento], submit_button="Enviar",
         formstyle='bootstrap3_stacked')
@@ -39,9 +42,12 @@ def inserir():
 @auth.requires_login()
 def listar():
     argumento = request.args(0) or redirect(URL('default', 'index'))
-    if argumento not in ('noticias', 'membros', 'eventos',
-                         'apoiadores', 'produtos'):
-        redirect(URL('default', 'index'))
+    lista_tabelas = ['noticias', 'eventos', 'produtos']
+    if auth.has_membership('admin'):
+        lista_tabelas.extend(['membros', 'apoiadores'])
+    if argumento not in lista_tabelas:
+        response.flash = T('Operação não permitida a seu usuário.')
+        redirect(URL('admin', 'listar', args='noticias'))
     lista = db(db[argumento]).select()
     return dict(argumento=argumento, lista=lista)
 
@@ -49,14 +55,17 @@ def listar():
 @auth.requires_login()
 def editar():
     argumento = request.args(0) or redirect(URL('default', 'index'))
-    if argumento not in ('noticias', 'membros', 'eventos', 'apoiadores',
-                         'produtos'):
-        redirect(URL('default', 'index'))
+    lista_tabelas = ['noticias', 'eventos', 'produtos']
+    if auth.has_membership('admin'):
+        lista_tabelas.extend(['membros', 'apoiadores'])
+    if argumento not in lista_tabelas:
+        response.flash = T('Operação não permitida a seu usuário.')
+        redirect(URL('admin', 'listar', args='noticias'))
     cod = request.args(1) or redirect(URL('default', 'index'))
     form = SQLFORM(
         db[argumento],
         cod,
-        deletable=argumento not in ('projeto', 'associacao'),
+        deletable=True,
         showid=False, submit_button="Enviar",
         upload=URL('default', 'download'), formstyle="bootstrap3_stacked"
     )

@@ -75,9 +75,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inserir <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="{{=URL('inserir',args=['noticias'])}}">Notícia</a></li>
-                      <li><a href="{{=URL('inserir',args=['membros'])}}">Membro</a></li>
+                      {{if auth.has_membership('admin'):}}<li><a href="{{=URL('inserir',args=['membros'])}}">Membro</a></li>{{pass}}
                       <li><a href="{{=URL('inserir',args=['eventos'])}}">Evento</a></li>
-                      <li><a href="{{=URL('inserir',args=['apoiadores'])}}">Apoiador</a></li>
+                      {{if auth.has_membership('admin'):}}<li><a href="{{=URL('inserir',args=['apoiadores'])}}">Apoiador</a></li>{{pass}}
                       <li><a href="{{=URL('inserir',args=['produtos'])}}">Produto</a></li>
                     </ul>
                   </li>
@@ -85,9 +85,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Listar <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="{{=URL('listar',args=['noticias'])}}">Notícia</a></li>
-                      <li><a href="{{=URL('listar',args=['membros'])}}">Membro</a></li>
+                      {{if auth.has_membership('admin'):}}<li><a href="{{=URL('listar',args=['membros'])}}">Membro</a></li>{{pass}}
                       <li><a href="{{=URL('listar',args=['eventos'])}}">Evento</a></li>
-                      <li><a href="{{=URL('listar',args=['apoiadores'])}}">Apoiador</a></li>
+                      {{if auth.has_membership('admin'):}}<li><a href="{{=URL('listar',args=['apoiadores'])}}">Apoiador</a></li>{{pass}}
                       <li><a href="{{=URL('listar',args=['produtos'])}}">Produto</a></li>
                     </ul>
                   </li>
