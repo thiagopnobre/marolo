@@ -89,7 +89,21 @@ def contato():
 
 
 def produtos():
-    return {}
+    pagina = request.args(0, cast=int, default=1)
+    itens_por_pagina = 9
+    total = db(db.produtos).count()
+    paginas = total / itens_por_pagina
+    if total % itens_por_pagina:
+        paginas += 1
+    limites = (itens_por_pagina * (pagina - 1), (itens_por_pagina * pagina))
+    produtos = db(db.produtos).select(
+        limitby=limites
+    )
+    return {
+        'produtos': produtos,
+        'pagina': pagina,
+        'paginas': paginas
+    }
 
 
 @cache.action()

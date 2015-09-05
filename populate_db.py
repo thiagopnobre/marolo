@@ -74,3 +74,22 @@ for i in xrange(10):
         'tipo': tipo,
         'url': 'https://en.wikipedia.org/wiki/Annona_crassiflora'
     })
+
+# Produtos
+for i in xrange(9):
+    preco = 0
+    if i in (1, 3, 5, 7):
+        preco = i * 2
+    if preco:
+        db.produtos.insert(**{
+            'nome': 'Produto {}'.format(i),
+            'descricao': 'Lorem ipsum dolor sit amet, consectetur adipisicing'
+            'elit. Porro necessitatibus facere velit labore praesentium',
+            'preco': preco
+        })
+    else:
+        db.produtos.insert(**{
+            'nome': 'Produto {}'.format(i),
+            'descricao': 'Lorem ipsum dolor sit amet, consectetur adipisicing'
+            'elit. Porro necessitatibus facere velit labore praesentium',
+        })

@@ -10,7 +10,7 @@
                 {{for membro in linha:}}
                     <div class="col-md-4 col-xs-12 text-center">
                         {{if membro['foto']:}}
-                        <img class="img-responsive img-circle center-block" width="200px" src="{{=URL('download', args=membro['foto'])}}">
+                        <img class="img-responsive img-circle center-block" height="200px" width="200px" src="{{=URL('download', args=membro['foto'])}}">
                         {{else:}}
                         <i class="fa fa-user fa-5x"></i>
                         {{pass}}
