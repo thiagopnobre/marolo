@@ -1,0 +1,12 @@
+.noticia {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.imagem {
+   	max-width: 100%;
+   	width: 300px;
+   	text-align: center;
+}
