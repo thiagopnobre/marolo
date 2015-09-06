@@ -9,12 +9,6 @@
     background-color: white;
 }
 
-.email,
-.assunto,
-.mensagem {
-    width: 50%;
-}
-
 .btn-contato {
     padding-left: 25px;
     padding-right: 25px;
