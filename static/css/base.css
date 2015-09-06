@@ -27,6 +27,12 @@ textarea {
     margin-bottom: 20px;
 }
 
+.open>a,
+.nav>li>a:focus
+{
+    background-color: #53341E !important;
+}
+
 #menu-topo {
     border-radius: 0;
     background-color: #402817;
@@ -36,11 +42,11 @@ textarea {
 
 #menu-topo a {
     text-decoration: none;
-    background-color: none;
 }
 
 #menu-topo a:link {
     color: white;
+    border-radius: 10px;
 }
 
 #menu-topo a:visited {
