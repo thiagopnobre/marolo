@@ -28,8 +28,7 @@ textarea {
 }
 
 .open>a,
-.nav>li>a:focus
-{
+.nav>li>a:focus {
     background-color: #53341E !important;
 }
 
@@ -122,7 +121,10 @@ footer {
     background-color: #402817;
 }
 
-@media (max-width: 990px) {
+@media (min-width: 990px) {
+    #patrocinadores {
+        float: right;
+    }
     #patrocinadores h4 {
         margin-top: 10px;
     }
@@ -132,13 +134,12 @@ footer {
     .news article {
         margin-left: 10px;
     }
-
     .news small {
         margin-left: 10px;
     }
 }
 
-div.flash{
+div.flash {
     font-weight: bold;
     color: white;
     background-color: #402817;
@@ -153,13 +154,12 @@ div.flash{
     z-index: 1000;
 }
 
-div.flash:hover{
-    opacity:  0.75;
+div.flash:hover {
+    opacity: 0.75;
 }
 
-div.flash #closeflash{
+div.flash #closeflash {
     color: white;
     float: right;
     margin-left: 15px;
 }
-
