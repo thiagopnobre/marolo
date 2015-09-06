@@ -8,11 +8,12 @@
         {{for linha in matriz:}}
             <div class="row">
                 {{for membro in linha:}}
-                    <div class="col-md-4 col-xs-12 text-center">
+                    <div class="col-md-4 col-xs-4 text-center" id="membros-box">
                         {{if membro['foto']:}}
-                        <img class="img-responsive img-circle center-block" height="200px" width="200px" src="{{=URL('download', args=membro['foto'])}}">
+                            <img class="img-responsive img-circle center-block"
+                            src="{{=URL('download', args=membro['foto'])}}">
                         {{else:}}
-                        <i class="fa fa-user fa-5x"></i>
+                            <i class="fa fa-user fa-5x"></i>
                         {{pass}}
                         <p>{{=membro['nome']}}</p>
                         <p><span class="text-muted">{{=membro['email']}}</span></p>

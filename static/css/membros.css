@@ -8,3 +8,31 @@
     border-radius: 3px;
     background-color: white;
 }
+
+#membros img {
+    height: 200px;
+}
+
+#membros p {
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    #membros img {
+        height: 150px;
+    }
+
+    #membros p {
+        font-size: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    #membros-box {
+        width: 100%;
+    }
+
+    #membros p {
+        font-size: 100%;
+    }
+}
