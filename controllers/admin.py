@@ -48,7 +48,7 @@ def listar():
     if argumento not in lista_tabelas:
         response.flash = T('Operação não permitida a seu usuário.')
         redirect(URL('admin', 'listar', args='noticias'))
-    lista = db(db[argumento]).select()
+    lista = db(db[argumento]).select(orderby=~db[argumento].id)
     return dict(argumento=argumento, lista=lista)
 
 
