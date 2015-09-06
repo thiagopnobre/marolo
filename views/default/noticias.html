@@ -1,18 +1,27 @@
 {{extend 'layout_marolo.html'}}
 
+{{block head}}
+    <link href="{{=URL('static','css/noticia.css')}}" rel="stylesheet">
+{{end}}
 
 {{block conteudo}}
-<div class="post-div">
+<div class="post-div noticia">
     <h2 class='title'>{{=noticia.titulo}}</h2>
     <small class='pull-left text-muted'>Publicado: {{=prettydate(noticia.modified_on)}}</small>
-    <div class="news row">
-        <div class="col-md-12">
+    <br>
+    <div class="news">
+        {{if noticia.foto:}}
+        <div class="text-center">
+            <img class="imagem" src="{{=URL('download', args=[noticia.foto])}}">
+        </div>
+        {{pass}}
+        <br>
+        <div class="row">
             <article>
-                <p>
+                <p class="text-justify">
                     {{=XML(noticia.conteudo)}}
                 </p>
             </article>
         </div>
     </div>
 </div>
-{{end}}
