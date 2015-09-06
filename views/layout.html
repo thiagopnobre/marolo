@@ -101,6 +101,7 @@
           </div>
       </div>
   </nav>
+  <div class="flash alert alert-dismissable">{{=response.flash or ''}}</div>
   <div class="container" id="body-content">
       <section class="col-md-10 col-xs-12">
           <div class="row admin-content" >
@@ -124,6 +125,7 @@
   <!-- The javascript =============================================
        (Placed at the end of the document so the pages load faster) -->
   <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+  <script src="{{=URL('static','js/web2py.js')}}"></script>
   <!--[if lt IE 7 ]>
       <script src="{{=URL('static','js/dd_belatedpng.js')}}"></script>
       <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
