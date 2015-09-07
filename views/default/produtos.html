@@ -20,7 +20,7 @@
                         <p>{{=produto.nome}}</p>
                         <p>{{=produto.descricao}}</p>
                         {{if produto.preco:}}
-                            <p>R$ {{=produto.preco}}</p>
+                            <p>R$ {{='{:.2f}'.format(produto.preco)}}</p>
                         {{pass}}
                     </a>
                     <div class="clearfix visible-xs-block"></div>
