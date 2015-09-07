@@ -53,26 +53,29 @@
             {{block conteudo}}{{end}}
         </section>
 
-            <!-- Aside tag apos o block conteudo mas dentro do div container -->
-            <aside class="col-md-2 col-xs-12" id="patrocinadores">
+        <!-- Aside tag apos o block conteudo mas dentro do div container -->
+        <aside class="col-md-2 col-xs-12" id="patrocinadores">
             {{if patrocinadores:}}
-            <h4 class="text-center ">Patrocinadores</h4> {{for patrocinador in patrocinadores:}}
-            <div class="text-center patrocinador">
-                <a href="{{=patrocinador['url']}}" target="_blank">
-                    <!-- url patrocinador  -->
-                    {{if patrocinador['logo_thumb']:}}
-                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
-                    {{else:}}
-                    <i class="fa fa-leaf fa-5x"></i> {{pass}}
-                </a>
-                <hr />
-                <a href="{{=patrocinador['url']}}" target="_blank">
-                    <!-- url patrocinador  -->
-                    <!-- o nome do apoiador deve ser polido no lado do servidor -->
-                    <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
-                </a>
-            </div>
-            {{pass}} {{pass}}
+                <h4 class="text-center ">Patrocinadores</h4>
+                {{for patrocinador in patrocinadores:}}
+                <div class="text-center patrocinador">
+                    <a href="{{=patrocinador['url']}}" target="_blank">
+                        <!-- url patrocinador  -->
+                        {{if patrocinador['logo_thumb']:}}
+                            <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
+                        {{else:}}
+                            <i class="fa fa-leaf fa-5x"></i>
+                            <hr />
+                            <a href="{{=patrocinador['url']}}" target="_blank">
+                                <!-- url patrocinador  -->
+                                <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
+                            </a>
+                        {{pass}}
+                    </a>
+                </div>
+                {{pass}}
+            {{pass}}
         </aside>
 
         <section class="col-md-10 col-xs-12" id="apoiadores">
@@ -81,7 +84,7 @@
                 <div class="row">
                     {{if parceiros:}}
                     <h4>Parceiros</h4> {{for parceiro in parceiros:}}
-                    <div class="col-md-2 text-center">
+                    <div class="col-md-2 col-xs-4 text-center">
                         <a href="{{=parceiro['url']}}" target="_blank">
                             <!-- url parceiro  -->
                             {{if parceiro['logo_thumb']:}}
@@ -95,9 +98,10 @@
                     {{pass}} {{pass}}
                 </div>
                 {{if apoiadores:}}
+                <hr />
                 <div class="row">
                     <h4>Apoiadores</h4> {{for apoiador in apoiadores:}}
-                    <div class="col-md-2 text-center">
+                    <div class="col-md-2 col-xs-4 text-center">
                         <a href="{{=apoiador['url']}}" target="_blank">
                             <!-- url apoiador  -->
                             {{if apoiador['logo_thumb']:}}
