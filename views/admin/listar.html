@@ -1,4 +1,6 @@
-{{extend 'layout.html'}}
+{{extend 'layout_admin.html'}}
+{{block conteudo}}
+<div class="row admin-content" >
 <h1 class="text-success">{{=argumento.capitalize()}}:</h1>
 {{if argumento == 'noticias':}}
   {{atributo = 'titulo'}}
@@ -22,3 +24,5 @@
   </tbody>
 
 </table>
+</div>
+{{end}}
