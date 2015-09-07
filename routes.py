@@ -1,6 +1,6 @@
-default_application='marolo'
-default_controller='default'
-default_function='index'
+default_application = 'marolo'
+default_controller = 'default'
+default_function = 'index'
 
 routes_in = (
     (r'/index', r'/marolo/default/index'),
@@ -18,8 +18,10 @@ routes_in = (
     (r'/admin/$action', r'/marolo/admin/user/$action'),
     (r'/admin/inserir/$argumento', r'/marolo/admin/inserir/$argumento'),
     (r'/admin/listar/$argumento', r'/marolo/admin/listar/$argumento'),
-    (r'/admin/editar/$argumento/$cod', r'/marolo/admin/editar/$argumento/$cod'),
-    (r'/static/images/(?P<imagem>[\w./-]+)', r'/marolo/static/images/\g<imagem>'),
+    (r'/admin/editar/$argumento/$cod',
+     r'/marolo/admin/editar/$argumento/$cod'),
+    (r'/static/images/(?P<imagem>[\w./-]+)',
+     r'/marolo/static/images/\g<imagem>'),
 )
 
 routes_out = (
@@ -38,7 +40,8 @@ routes_out = (
     (r'/marolo/admin/user/$action', r'/admin/$action'),
     (r'/marolo/admin/inserir/$argumento', r'/admin/inserir/$argumento'),
     (r'/marolo/admin/listar/$argumento', r'/admin/listar/$argumento'),
-    (r'/marolo/admin/editar/$argumento/$cod', r'/admin/editar/$argumento/$cod'),
-    (r'/marolo/static/images/\g<imagem>', r'/static/images/(?P<imagem>[\w./-]+)'),
+    (r'/marolo/admin/editar/$argumento/$cod',
+     r'/admin/editar/$argumento/$cod'),
+    (r'/marolo/static/images/\g<imagem>',
+     r'/static/images/(?P<imagem>[\w./-]+)'),
 )
-
