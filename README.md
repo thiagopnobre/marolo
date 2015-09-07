@@ -58,7 +58,13 @@ Como contribuir
 ---------------
 
 - Faça um fork do projeto(somente caso vá contribuir com código) 
-- Crie uma issue ou escreva PR propondo alguma funcionalidade ou corrigindo algum erro.
+- Clone o seu fork localmente em sua máquina
+- Crie uma issue ou proponha um PR propondo alguma funcionalidade ou corrigindo algum erro:
+- Antes de realizar qualquer modificação, crie um branch (localmente) para a issue que você deseja resolver com:
+` git branch -b "fix_issue_X" ` 
+- Trabalhe localmente, faça suas modificações e commits no seu branch "fix_issue_X" e suba suas alterações para o seu fork remoto com:
+` git push --set-upstream origin "fix_issue_X" `
+- Proponha um PR tomando o seu branch "fix_issue_X" como base no branch "master" do grupython 
 - Aguarde aprovação de um dos membros responsáveis pelo projeto.
 Caso seja membro do grupython da equipe do Marolo, aguarde aprovação de outro membro que não você próprio.
 
