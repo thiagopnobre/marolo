@@ -71,7 +71,7 @@ Caso seja membro do grupython da equipe do Marolo, aguarde aprovação de outro 
 Dicas
 -----
 
-- Crie issues com boa descrição e quando funcionalidade envolvendo o 
+- Crie issues com boa descrição.
 - Quando funcionalidade envolver estilo e/ou design do site, tente mandar imagem.
 - Quando reverter algum commit ou discordar de alguma funcionalidade, crie discussões apontando seus argumentos.
 - Mudanças que podem causar o interrompimento do funcionamento correto do site devem notificar todos os membros da equipe do Marolo.
