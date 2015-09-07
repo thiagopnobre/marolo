@@ -31,6 +31,3 @@ form.element(_name='mensagem').update(
     _required='',
     _rows='4'
 )
-# form.element(_value='enviar').update(
-#     _class='btn btn-success btn-lg'
-# )
