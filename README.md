@@ -58,7 +58,7 @@ Como contribuir
 ---------------
 
 - Faça um fork do projeto(somente caso vá contribuir com código) 
-- Clone o seu fork localmente em sua máquina
+- Clone o seu fork em sua máquina
 - Crie uma issue ou proponha um PR propondo alguma funcionalidade ou corrigindo algum erro:
 - Antes de realizar qualquer modificação, crie um branch (localmente) para a issue que você deseja resolver com:
 ` git branch -b "fix_issue_X" ` 
