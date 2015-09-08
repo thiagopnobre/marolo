@@ -68,7 +68,7 @@
         <div class="row">
             {{if parceiros:}}
             <h4>Parceiros</h4> {{for parceiro in parceiros:}}
-            <div class="col-md-2 text-center">
+            <div class="col-md-2  col-xs-4 text-center">
                 <a href="{{=parceiro['url']}}" target="_blank">
                     <!-- url parceiro  -->
                     {{if parceiro['logo_thumb']:}}
@@ -82,9 +82,10 @@
             {{pass}} {{pass}}
         </div>
         {{if apoiadores:}}
+        <hr>
         <div class="row">
             <h4>Apoiadores</h4> {{for apoiador in apoiadores:}}
-            <div class="col-md-2 text-center">
+            <div class="col-md-2  col-xs-4 text-center">
                 <a href="{{=apoiador['url']}}" target="_blank">
                     <!-- url apoiador  -->
                     {{if apoiador['logo_thumb']:}}
