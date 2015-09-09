@@ -33,11 +33,6 @@ hr {
     margin-bottom: 20px;
 }
 
-.row {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
 .open>a,
 .nav>li>a:focus {
     background-color: #53341E !important;
@@ -110,6 +105,8 @@ hr {
     padding: 10px 20px;
     border-radius: 3px;
     background-color: white;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 footer {
