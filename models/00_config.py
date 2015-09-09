@@ -26,3 +26,6 @@ auth.settings.actions_disabled = ['register']
 auth.settings.remember_me_form = False
 
 auth.settings.formstyle = 'bootstrap3_stacked'
+
+# Language force for pt-br
+T.force('pt-br')
