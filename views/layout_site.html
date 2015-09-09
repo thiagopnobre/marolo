@@ -44,16 +44,12 @@
             <a href="{{=patrocinador['url']}}" target="_blank">
                 <!-- url patrocinador  -->
                 {{if patrocinador['logo_thumb']:}}
-                <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
+                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}"
+                    title="{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}"
+                    alt="{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}"></img>
                 {{else:}}
-                <i class="fa fa-leaf fa-5x"></i>
+                    <i class="fa fa-leaf fa-5x"></i>
                 {{pass}}
-            </a>
-            <hr />
-            <a href="{{=patrocinador['url']}}" target="_blank">
-                <!-- url patrocinador  -->
-                <!-- o nome do apoiador deve ser polido no lado do servidor -->
-                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
             </a>
         </div>
     {{pass}}
@@ -72,10 +68,11 @@
                 <a href="{{=parceiro['url']}}" target="_blank">
                     <!-- url parceiro  -->
                     {{if parceiro['logo_thumb']:}}
-                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}" alt="news"></img>
+                        <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}"
+                        title="{{=' '.join(palavra.capitalize() for palavra in parceiro['nome'].strip().split())}}"
+                        alt="{{=' '.join(palavra.capitalize() for palavra in parceiro['nome'].strip().split())}}"></img>
                     {{else:}}
-                    <i class="fa fa-thumbs-o-up fa-5x"></i>
-                    <p>{{=parceiro['nome']}}</p>
+                        <i class="fa fa-thumbs-o-up fa-5x"></i>
                     {{pass}}
                 </a>
             </div>
@@ -89,10 +86,11 @@
                 <a href="{{=apoiador['url']}}" target="_blank">
                     <!-- url apoiador  -->
                     {{if apoiador['logo_thumb']:}}
-                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}" alt="news"></img>
+                        <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}"
+                        title="{{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}"
+                        alt="Logo {{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}"></img>
                     {{else:}}
-                    <i class="fa fa-heart-o fa-5x"></i>
-                    <p>{{=apoiador['nome']}}</p>
+                        <i class="fa fa-heart-o fa-5x"></i>
                     {{pass}}
                 </a>
             </div>
