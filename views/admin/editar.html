@@ -1,3 +1,7 @@
-{{extend 'layout.html'}}
+{{extend 'layout_admin.html'}}
+{{block conteudo}}
+<div class="row admin-content" >
 <h1 class="text-success">Editar {{=argumento.capitalize()}}:</h1>
 {{=form}}
+</div>
+{{end}}

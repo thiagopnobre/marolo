@@ -1,0 +1,105 @@
+{{extend 'base.html'}}
+
+{{block menu}}
+<nav class="navbar navbar-default" id="menu-topo" role="navigation">
+    <div class='container'>
+        <div class='navbar-header'>
+            <a class='navbar-brand visible-xs' href='{{=URL ("default", "index")}}'>
+                <i class='fa fa-home' style="font-size:45px; margin-top:-10px"></i>
+            </a>
+            <button class='navbar-toggle' data-target='#mobile-button' data-toggle='collapse' type='button' id="menu-button">
+                <span class='sr-only'>
+                        Toggle navigation
+                    </span>
+                <span class='icon-bar'>
+                    </span>
+                <span class='icon-bar'>
+                    </span>
+                <span class='icon-bar'>
+                    </span>
+            </button>
+        </div>
+        <div class='collapse navbar-collapse' id='mobile-button'>
+            <ul class='nav navbar-nav'>
+                <li><a id="menu-inicio" href='/'>Inicio</a></li>
+                <li><a id="menu-membros" href='{{=URL ("default", "membros")}}'>Membros</a></li>
+                <li><a id="menu-projeto" href='{{=URL ("default", "projeto")}}'>Projeto</a></li>
+                <li><a id="menu-associacao" href='{{=URL ("default", "associacao")}}'>Associação</a></li>
+                <li><a id="menu-produtos" href='{{=URL ("default", "produtos")}}'>Produtos</a></li>
+                <li><a id="menu-eventos" href='{{=URL ("default", "eventos")}}'>Eventos</a></li>
+                <li><a id="menu-contato" href='{{=URL ("default", "contato")}}'>Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{{end}}
+
+{{block lateral}}
+<!-- Aside tag apos o block conteudo mas dentro do div container -->
+<aside class="col-md-2 col-xs-12" id="patrocinadores">
+    {{if patrocinadores:}}
+    <h4 class="text-center ">Patrocinadores</h4>
+    {{for patrocinador in patrocinadores:}}
+        <div class="text-center patrocinador">
+            <a href="{{=patrocinador['url']}}" target="_blank">
+                <!-- url patrocinador  -->
+                {{if patrocinador['logo_thumb']:}}
+                <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}" alt="news"></img>
+                {{else:}}
+                <i class="fa fa-leaf fa-5x"></i>
+                {{pass}}
+            </a>
+            <hr />
+            <a href="{{=patrocinador['url']}}" target="_blank">
+                <!-- url patrocinador  -->
+                <!-- o nome do apoiador deve ser polido no lado do servidor -->
+                <p class="text-center text-success">{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}</p>
+            </a>
+        </div>
+    {{pass}}
+    {{pass}}
+</aside>
+{{end}}
+
+{{block pos_conteudo}}
+<section class="col-md-10 col-xs-12" id="apoiadores">
+    {{if apoiadores or parceiros:}}
+    <div class="row" id="parceiros_apoiadores">
+        <div class="row">
+            {{if parceiros:}}
+            <h4>Parceiros</h4> {{for parceiro in parceiros:}}
+            <div class="col-md-2  col-xs-4 text-center">
+                <a href="{{=parceiro['url']}}" target="_blank">
+                    <!-- url parceiro  -->
+                    {{if parceiro['logo_thumb']:}}
+                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}" alt="news"></img>
+                    {{else:}}
+                    <i class="fa fa-thumbs-o-up fa-5x"></i>
+                    <p>{{=parceiro['nome']}}</p>
+                    {{pass}}
+                </a>
+            </div>
+            {{pass}} {{pass}}
+        </div>
+        {{if apoiadores:}}
+        <hr>
+        <div class="row">
+            <h4>Apoiadores</h4> {{for apoiador in apoiadores:}}
+            <div class="col-md-2  col-xs-4 text-center">
+                <a href="{{=apoiador['url']}}" target="_blank">
+                    <!-- url apoiador  -->
+                    {{if apoiador['logo_thumb']:}}
+                    <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}" alt="news"></img>
+                    {{else:}}
+                    <i class="fa fa-heart-o fa-5x"></i>
+                    <p>{{=apoiador['nome']}}</p>
+                    {{pass}}
+                </a>
+            </div>
+            {{pass}}
+        </div>
+        {{pass}}
+    </div>
+    {{pass}}
+</section>
+{{end}}
