@@ -33,3 +33,4 @@ auth.settings.reset_password_requires_verification = True
 auth.settings.login_next = URL('admin', 'listar', args=['noticias'])
 auth.settings.logout_next = URL('default', 'index')
 auth.settings.actions_disabled = ['register']
+auth.settings.remember_me_form = False
