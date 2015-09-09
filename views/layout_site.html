@@ -45,8 +45,8 @@
                 <!-- url patrocinador  -->
                 {{if patrocinador['logo_thumb']:}}
                     <img class="img-responsive thumbnail" src="{{=URL('download', args=[patrocinador['logo_thumb']])}}"
-                    title="{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}"
-                    alt="{{=' '.join(palavra.capitalize() for palavra in patrocinador['nome'].strip().split())}}"></img>
+                    title="{{=patrocinador['nome'].title()}}"
+                    alt="Logo {{=patrocinador['nome'].title()}}"></img>
                 {{else:}}
                     <i class="fa fa-leaf fa-5x"></i>
                 {{pass}}
@@ -69,8 +69,8 @@
                     <!-- url parceiro  -->
                     {{if parceiro['logo_thumb']:}}
                         <img class="img-responsive thumbnail" src="{{=URL('download', args=[parceiro['logo_thumb']])}}"
-                        title="{{=' '.join(palavra.capitalize() for palavra in parceiro['nome'].strip().split())}}"
-                        alt="{{=' '.join(palavra.capitalize() for palavra in parceiro['nome'].strip().split())}}"></img>
+                        title="{{=parceiro['nome'].title()}}"
+                        alt="Logo {{=parceiro['nome'].title()}}"></img>
                     {{else:}}
                         <i class="fa fa-thumbs-o-up fa-5x"></i>
                     {{pass}}
@@ -87,8 +87,8 @@
                     <!-- url apoiador  -->
                     {{if apoiador['logo_thumb']:}}
                         <img class="img-responsive thumbnail" src="{{=URL('download', args=[apoiador['logo_thumb']])}}"
-                        title="{{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}"
-                        alt="Logo {{=' '.join(palavra.capitalize() for palavra in apoiador['nome'].strip().split())}}"></img>
+                        title="{{=apoiador['nome'].title()}}"
+                        alt="Logo {{=apoiador['nome'].title()}}"></img>
                     {{else:}}
                         <i class="fa fa-heart-o fa-5x"></i>
                     {{pass}}
