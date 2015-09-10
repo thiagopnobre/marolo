@@ -50,13 +50,14 @@
           </div>
       </div>
   </nav>
+{{end}}
 
-  <script type="text/javascript">
-       $(document).ready(function () {
-          $(":file").filestyle({icon: false, buttonText: "Escolha uma foto",buttonBefore: true, placeholder: "Não há foto selecionada"});
-      });
-  </script>
+{{block scripts}}
+<script type="text/javascript">
+     $(document).ready(function () {
+        $(":file").filestyle({icon: false, buttonText: "Escolha uma foto",buttonBefore: true, placeholder: "Não há foto selecionada"});
+    });
+</script>
 
-  <script src="{{=URL('static','js/bootstrap-filestyle.min.js')}}"></script>
-
+<script src="{{=URL('static','js/bootstrap-filestyle.min.js')}}"></script>
 {{end}}
