@@ -50,7 +50,7 @@ def listar_usuarios():
 
 @auth.requires_membership('admin')
 def editar_usuario():
-    user_id = request.args(0) or redirect(URL('default', 'index'))
+    user_id = request.args(0 , cast=int, otherwise=URL('default', 'index'))
     query = db.auth_user.id==user_id
     query &= db.auth_user.id==db.auth_membership.user_id
     user_data = db(query).select(
