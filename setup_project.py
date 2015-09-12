@@ -1,7 +1,7 @@
-import os, sys, glob
+import os, glob, argparse
 from shutil import copy2
 
-# Runs to funcios to delete and populate the database
+# Runs to functions to delete and populate the database
 def repopulate_db():
     delete_db()
     populate_db()
@@ -16,9 +16,8 @@ def delete_db():
     for f in files:
         os.remove(f)
 
-def setup():
-
-	#if file does not exist in private directory copies into private folder
+def copy_requirements():
+    #if file does not exist in private directory copies into private folder
     if not os.path.exists('private/appconfig.ini'):
         try:
             copy2('./appconfig.ini', 'private/appconfig.ini')
@@ -31,22 +30,36 @@ def setup():
         except:
             print('routes.py not found')
 
-    # Populates database
-    if '-P' in sys.argv:
+def setup():
+
+    # adds arguments for terminal usage
+    parser = argparse.ArgumentParser(prog='setup_project.py', description='Automatize project importing configs and handling database files.')
+    parser.add_argument('-p', help='populate database', action="store_true")
+    parser.add_argument('-d', help='delete database', action="store_true")
+    parser.add_argument('-rp', help='repopulate database', action="store_true")
+    parser.add_argument('-cp', help='copies dependences', action="store_true")
+
+    # parse args
+    args = parser.parse_args()
+
+    # test arguments
+    if args.p:
         populate_db()
+        print('database populated.')
 
-    # Repopulates database
-    if '-R' in sys.argv:
-        repopulate_db()
-
-    # Deletes database
-    if '-D' in sys.argv:
+    if args.d:
         delete_db()
+        print('database deleted.')
 
-    if '-r' in sys.argv:
-        os.system("pip install requirements.txt")
+    if args.rp:
+        repopulate_db()
+        print('database repopulated.')
+
+    if args.cp:
+        copy_requirements()
+        print('dependencies set')
 
 
 if __name__ == '__main__':
-	setup()
+    setup()
     

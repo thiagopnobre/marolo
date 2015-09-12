@@ -49,9 +49,9 @@ Instalação
 
 - Baixe o repositório git
 - Extraia na pasta applications do web2py
-- copie o arquivo appconfig.ini para o diretório private na raiz do projeto
 - (sudo) pip install -r requirements.txt
-- No diretório raiz do web2py execute: `./web2py.py  -S marolo -M -R applications/marolo/populate_db.py ` para popular o banco de dados (necessário somente uma vez)
+- No diretório raiz do web2py execute o script python setup_project.py com as opções `-p e `-cp` (Execute `python setup_project.py -h` para mais opções disponíveis):
+`python setup_project.py -p -cp`
 - Execute o web2py e a aplicação já estará rodando
 
 Como contribuir
