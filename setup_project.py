@@ -24,7 +24,13 @@ def setup():
             copy2('./appconfig.ini', 'private/appconfig.ini')
         except:
             print('appconfig.ini not found')
-   
+
+    if not os.path.exists('../../routes.py'):
+        try:
+            copy2('routes.py', '../../routes.py')
+        except:
+            print('routes.py not found')
+
     # Populates database
     if '-P' in sys.argv:
         populate_db()
@@ -36,6 +42,9 @@ def setup():
     # Deletes database
     if '-D' in sys.argv:
         delete_db()
+
+    if '-r' in sys.argv:
+        os.system("pip install requirements.txt")
 
 
 if __name__ == '__main__':
