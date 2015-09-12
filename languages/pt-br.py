@@ -153,6 +153,7 @@
 'register': 'Registre-se',
 'Registration identifier': 'Idenficador de registro',
 'Registration key': 'Chave de registro',
+'Request reset password': 'Redefinir senha',
 'Reset Password key': 'Resetar chave de senha',
 'Resources': 'Recursos',
 'Role': 'Papel',
