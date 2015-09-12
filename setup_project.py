@@ -1,23 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os, glob, argparse
 from shutil import copy2
 
-# Runs to functions to delete and populate the database
+# repovoa banco de dados
 def repopulate_db():
     delete_db()
     populate_db()
 
-# Runs script to populate database
+# povoa banco de dados
 def populate_db():
     os.system("../../web2py.py -S marolo -M -R applications/marolo/populate_db.py")
 
-# Deletes database files
+# apaga banco de dados
 def delete_db():
     files = glob.glob('./databases/*')
     for f in files:
         os.remove(f)
 
+# copia de requisitos (appconfig.ini e routes.py)
 def copy_requirements():
-    #if file does not exist in private directory copies into private folder
     if not os.path.exists('private/appconfig.ini'):
         try:
             copy2('./appconfig.ini', 'private/appconfig.ini')
@@ -30,19 +33,24 @@ def copy_requirements():
         except:
             print('routes.py not found')
 
+# instalação de requisitos
+def install_requirements():
+    os.system("sudo pip install -r requirements.txt")
+
 def setup():
 
-    # adds arguments for terminal usage
-    parser = argparse.ArgumentParser(prog='setup_project.py', description='Automatize project importing configs and handling database files.')
-    parser.add_argument('-p', help='populate database', action="store_true")
-    parser.add_argument('-d', help='delete database', action="store_true")
-    parser.add_argument('-rp', help='repopulate database', action="store_true")
-    parser.add_argument('-cp', help='copies dependences', action="store_true")
+    # adição de argumentos para interface do terminal
+    parser = argparse.ArgumentParser(prog='setup_project.py', description='Automatização do projeto importando configurações e banco de dados.')
+    parser.add_argument('-p', help='povoar banco de dados', action="store_true")
+    parser.add_argument('-d', help='apagar banco de dados', action="store_true")
+    parser.add_argument('-rp', help='repovoar banco de dados', action="store_true")
+    parser.add_argument('-cp', help='copiar dependências', action="store_true")
+    parser.add_argument('-r', help='instalar dependências', action="store_true")
 
     # parse args
     args = parser.parse_args()
 
-    # test arguments
+    # testa argumentos
     if args.p:
         populate_db()
         print('database populated.')
@@ -58,6 +66,9 @@ def setup():
     if args.cp:
         copy_requirements()
         print('dependencies set')
+
+    if args.r:
+        install_requirements()
 
 
 if __name__ == '__main__':
