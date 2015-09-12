@@ -21,7 +21,8 @@ def index():
 
 
 def noticias():
-    noticia = db(db.noticias.permalink == request.args(0)).select().first()
+    permalink = request.args(0, otherwise='/')
+    noticia = db.noticias(permalink=permalink) or redirect('/')
     return dict(noticia=noticia)
 
 
