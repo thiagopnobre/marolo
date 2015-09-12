@@ -57,7 +57,6 @@ def editar_usuario():
         db.auth_user.first_name,
         db.auth_user.last_name,
         db.auth_user.email,
-        db.auth_membership.user_id,
         db.auth_membership.group_id,
     ).first()
 
@@ -68,6 +67,8 @@ def editar_usuario():
     db.auth_user.email.requires = IS_EMAIL(error_message=T('Email inválido!'))
     db.auth_user.password.writable = False
     db.auth_user.password.readable = False
+    db.auth_membership.user_id.writable = False
+    db.auth_membership.user_id.readable = False
     form_update = SQLFORM.factory(
         db.auth_user,
         db.auth_membership,
