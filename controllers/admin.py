@@ -85,7 +85,7 @@ def editar_usuario():
         session.flash = T('Usuário editado com sucesso!')
         redirect(URL('admin', 'listar_usuarios'))
 
-    return dict(form_update=form_update, user_data=user_data)
+    return dict(form_update=form_update)
 
 
 @auth.requires_login()
