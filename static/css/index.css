@@ -1,5 +1,27 @@
-#menu-topo #menu-inicio {
+#myCarousel .nav a small
+{
+    display: block;
+}
+#myCarousel .nav
+{
+    background: #eee;
+}
+.nav-justified > li > a
+{
+    border-radius: 0px;
+    color: inherit;
+}
+
+.nav-pills>li a { background-color: white; }
+.nav-pills>li.active a { background-color: #5AAC41 !important; }
+
+#menu-topo,
+#menu-inicio {
     color: #5AAC41;
+}
+
+.slider {
+    margin-bottom: 10px;
 }
 
 .post-div {

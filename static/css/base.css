@@ -33,11 +33,6 @@ hr {
     margin-bottom: 20px;
 }
 
-.open>a,
-.nav>li>a:focus {
-    background-color: #53341E !important;
-}
-
 #menu-topo {
     border-radius: 0;
     background-color: #402817;
