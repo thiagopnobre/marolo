@@ -42,6 +42,51 @@ def register():
     return dict(form_register=form_register)
 
 
+@auth.requires_membership('admin')
+def listar_usuarios():
+    lista = db(db.auth_user).select(orderby=~db.auth_user.id)
+    return dict(lista=lista)
+
+
+@auth.requires_membership('admin')
+def editar_usuario():
+    user_id = request.args(0) or redirect(URL('default', 'index'))
+    query = db.auth_user.id==user_id
+    query &= db.auth_user.id==db.auth_membership.user_id
+    user_data = db(query).select(
+        db.auth_user.first_name,
+        db.auth_user.last_name,
+        db.auth_user.email,
+        db.auth_membership.user_id,
+        db.auth_membership.group_id,
+    ).first()
+
+    for campo, valor in user_data.auth_user.items():
+        db.auth_user[campo].default = valor
+    for campo, valor in user_data.auth_membership.items():
+        db.auth_membership[campo].default = valor
+    db.auth_user.email.requires = IS_EMAIL(error_message=T('Email inválido!'))
+    db.auth_user.password.writable = False
+    db.auth_user.password.readable = False
+    form_update = SQLFORM.factory(
+        db.auth_user,
+        db.auth_membership,
+        submit_button="Enviar"
+    )
+
+    if form_update.process().accepted:
+        db(db.auth_user.id==user_id).update(
+            **db.auth_user._filter_fields(form_update.vars)
+        )
+        db(db.auth_membership.user_id==user_id).update(
+            **db.auth_membership._filter_fields(form_update.vars)
+        )
+        session.flash = T('Usuário editado com sucesso!')
+        redirect(URL('admin', 'listar_usuarios'))
+
+    return dict(form_update=form_update, user_data=user_data)
+
+
 @auth.requires_login()
 def inserir():
     argumento = request.args(0) or redirect(URL('default', 'index'))

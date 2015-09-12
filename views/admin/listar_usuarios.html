@@ -1,0 +1,24 @@
+{{extend 'layout_admin.html'}}
+{{block conteudo}}
+<div class="row admin-content" >
+<h1 class="text-success">Usuários:</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{for valor in lista:}}
+    <tr>
+        <td>{{=valor.first_name}}</td>
+        <td>{{=valor.email}}</td>
+        <td><a href="{{=URL('editar_usuario',args=[valor.id])}}" class="btn btn-sm btn-success">Editar</a></td>
+    </tr>
+    {{pass}}
+  </tbody>
+
+</table>
+</div>
+{{end}}

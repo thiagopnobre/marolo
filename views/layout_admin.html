@@ -22,7 +22,13 @@
           <div class='collapse navbar-collapse' id='mobile-button'>
 
               <ul class='nav navbar-nav'>
-                  <li>{{if auth.has_membership('admin'):}}<a href="{{=URL('register')}}">Cadastrar usuário</a>{{pass}}</li>
+                  {{if auth.has_membership('admin'):}}<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{=URL('listar_usuarios')}}">Listar</a></li>
+                        <li><a href="{{=URL('register')}}">Cadastrar</a></li>
+                    </ul>
+                  </li>{{pass}}
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inserir <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
