@@ -16,9 +16,9 @@ form = SQLFORM.factory(
     ),
 
     Field('mensagem', 'text', requires=IS_NOT_EMPTY(
-        error_message='Por favor escreva um texto.'),
+        error_message=T('Por favor escreva um texto.')),
     ),
-    submit_button='{} Enviar'.format(str(I(_class="fa fa-envelope-o"))),
+    submit_button=T('Enviar'),
     formstyle='bootstrap3_inline',
     _class='form-horizontal'
 )
@@ -27,7 +27,7 @@ form.element(_name="email").update(
     _required=''
 )
 form.element(_name='mensagem').update(
-    _placeholder='Digite aqui sua mensagem.',
+    _placeholder=T('Digite aqui sua mensagem.'),
     _required='',
     _rows='4'
 )
