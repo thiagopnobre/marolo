@@ -20,6 +20,28 @@ def user():
     return dict(form=auth())
 
 
+@auth.requires_membership('admin')
+def register():
+    db.auth_membership.user_id.writable = False
+    db.auth_membership.user_id.readable = False
+    form_register = SQLFORM.factory(
+        db.auth_user,
+        db.auth_membership,
+        submit_button="Enviar"
+    )
+
+    if form_register.process().accepted:
+        form_register.vars.user_id = db.auth_user.insert(
+            **db.auth_user._filter_fields(form_register.vars)
+        )
+        db.auth_membership.insert(
+            **db.auth_membership._filter_fields(form_register.vars)
+        )
+        response.flash = T('Usuário cadastrado com sucesso!')
+
+    return dict(form_register=form_register)
+
+
 @auth.requires_login()
 def inserir():
     argumento = request.args(0) or redirect(URL('default', 'index'))
