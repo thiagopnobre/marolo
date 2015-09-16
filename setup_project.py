@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import os, glob, argparse
@@ -11,7 +10,7 @@ def repopulate_db():
 
 # povoa banco de dados
 def populate_db():
-    os.system("../../web2py.py -S marolo -M -R applications/marolo/populate_db.py")
+    os.system("../../web2py.py -S marolo -M -R ./applications/marolo/populate_db.py")
 
 # apaga banco de dados
 def delete_db():
@@ -21,6 +20,13 @@ def delete_db():
 
 # copia de requisitos (appconfig.ini e routes.py)
 def copy_requirements():
+    
+    if not os.path.exists('private'):
+        os.mkdir('private')
+
+    if not os.path.exists('databases'):
+        os.mkdir('databases')
+
     if not os.path.exists('private/appconfig.ini'):
         try:
             copy2('./appconfig.ini', 'private/appconfig.ini')
@@ -50,10 +56,16 @@ def setup():
     # parse args
     args = parser.parse_args()
 
+    if args.r:
+        install_requirements()
+
+    if args.cp:
+        copy_requirements()
+        print('dependencies set')
+
     # testa argumentos
     if args.p:
         populate_db()
-        print('database populated.')
 
     if args.d:
         delete_db()
@@ -62,13 +74,6 @@ def setup():
     if args.rp:
         repopulate_db()
         print('database repopulated.')
-
-    if args.cp:
-        copy_requirements()
-        print('dependencies set')
-
-    if args.r:
-        install_requirements()
 
 
 if __name__ == '__main__':
