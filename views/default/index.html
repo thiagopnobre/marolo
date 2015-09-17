@@ -75,14 +75,17 @@
 <div class="post-div">
     <h2 class='title'>{{=noticia.titulo}}</h2>
     <div class="news row">
-        <div class="col-md-2">
+        <div class="col-md-3 col-xs-5" id="post-div-img">
             {{if noticia.foto:}}
-                  <img src="{{=URL('download',args=[noticia.foto])}}" alt="post img" class="pull-left img-responsive  img-thumbnail">
+                <img src="{{=URL('download',args=[noticia.foto])}}" alt="post img"
+                class="pull-left img-responsive  img-thumbnail">
             {{else:}}
-              <p class="text-center"><i class=" text-center fa fa-newspaper-o big-icon"></i></p>
+                <p class="text-center">
+                    <i class=" text-center fa fa-newspaper-o big-icon"></i>
+                </p>
             {{pass}}
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
             <article>
                 <p>
                     {{=noticia.resumo}}
