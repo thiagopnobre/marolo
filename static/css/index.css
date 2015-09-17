@@ -39,6 +39,11 @@
     box-sizing: border-box;
 }
 
+.noticia-imagem {
+    padding: 0px !important;
+    margin-right: 5px;
+}
+
 .title {
     margin: 0;
     font-size: 30px;
@@ -70,7 +75,7 @@
     .title {
         font-size: 20px;
     }
-    #post-div-img {
+    .noticia-imagem {
         width: 100% !important;
     }
 }
