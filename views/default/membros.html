@@ -9,14 +9,28 @@
             <div class="row">
                 {{for membro in linha:}}
                     <div class="col-md-4 col-xs-4 text-center" id="membros-box">
+                        <div class="card hovercard">
+                            <div class="cardheader"></div>
                         {{if membro['foto']:}}
-                            <img class="img-responsive img-circle center-block"
-                            src="{{=URL('download', args=membro['foto'])}}">
+                            <div class="avatar">
+                                <img alt="" class="img-responsive img-circle center-block"
+                                src="{{=URL('download', args=membro['foto'])}}">
+                            </div>
                         {{else:}}
-                            <i class="fa fa-user fa-5x"></i>
+                            <div class="avatar">
+                                <img alt="" class="img-responsive img-circle center-block"
+                                src="{{=URL('static','images/member.jpg')}}">
+                            </div>
                         {{pass}}
-                        <p>{{=membro['nome']}}</p>
-                        <p><span class="text-muted">{{=membro['email']}}</span></p>
+                            <div class="info">
+                                <div class="title">
+                                    <p>{{=membro['nome']}}</p>
+                                </div>
+                                <div class="desc">
+                                    <span class="text-muted">{{=membro['email']}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {{pass}}
             </div>
