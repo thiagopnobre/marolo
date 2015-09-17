@@ -59,3 +59,18 @@
 .big-icon {
     font-size: 8em;
 }
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 468px) {
+    .title {
+        font-size: 20px;
+    }
+    #post-div-img {
+        width: 100% !important;
+    }
+}
