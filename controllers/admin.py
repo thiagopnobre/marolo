@@ -139,7 +139,8 @@ def editar():
     )
 
     if form.process().accepted:
-        response.flash = 'Registro editado com sucesso'
+        session.flash = 'Registro editado com sucesso'
+        redirect(URL('admin', 'listar', args=argumento))
     elif form.errors:
         response.flash = 'Formulário contem erros'
     return dict(argumento=argumento, form=form)
