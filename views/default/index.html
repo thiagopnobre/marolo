@@ -3,73 +3,52 @@
     <link href="{{=URL('static','css/index.css')}}" rel="stylesheet">
 {{end}}
 {{block conteudo}}
+{{if carousel:}}
 <div class="slider">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="http://placehold.it/1200x400/16a085/ffffff&text=About Us">
+                {{if carousel[0].imagem:}}
+                <img src="{{=URL('download', args=aba.imagem)}}">
+                {{else:}}
+                <img src="https://placeholdit.imgix.net/~text?bg=53341E&w=1200&h=400">
+                {{pass}}
                 <div class="carousel-caption">
                     <h3>
-                        Headline</h3>
+                        {{=carousel[0].titulo}}</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                        ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+                        {{=carousel[0].descricao}}</p>
                 </div>
             </div>
             <!-- End Item -->
+            {{for aba in carousel[1:]:}}
             <div class="item">
-                <img src="http://placehold.it/1200x400/e67e22/ffffff&text=Projects">
+                {{if aba.imagem:}}
+                <img src="{{=URL('download', args=aba.imagem)}}">
+                {{else:}}
+                <img src="https://placeholdit.imgix.net/~text?bg=53341E&w=1200&h=400">
+                {{pass}}
                 <div class="carousel-caption">
                     <h3>
-                        Headline</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                        ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+                        {{=aba.titulo}}</h3>
+                    <p>{{=aba.descricao}}</p>
                 </div>
             </div>
-            <!-- End Item -->
-            <div class="item">
-                <img src="http://placehold.it/1200x400/2980b9/ffffff&text=Portfolio">
-                <div class="carousel-caption">
-                    <h3>
-                        Headline</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                        ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-                </div>
-            </div>
-            <!-- End Item -->
-            <div class="item">
-                <img src="http://placehold.it/1200x400/8e44ad/ffffff&text=Services">
-                <div class="carousel-caption">
-                    <h3>
-                        Headline</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                        ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-                </div>
-            </div>
+            {{pass}}
             <!-- End Item -->
         </div>
         <!-- End Carousel Inner -->
         <ul class="nav nav-pills nav-justified">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"><a href="#">About<small>Lorem
-                ipsum dolor sit</small></a></li>
-            <li data-target="#myCarousel" data-slide-to="1"><a href="#">Projects<small>Lorem ipsum
-                dolor sit</small></a></li>
-            <li data-target="#myCarousel" data-slide-to="2"><a href="#">Portfolio<small>Lorem ipsum
-                dolor sit</small></a></li>
-            <li data-target="#myCarousel" data-slide-to="3"><a href="#">Services<small>Lorem ipsum
-                dolor sit</small></a></li>
+            <li data-target="#myCarousel" data-slide-to="0" class="active"><a href="{{=carousel[0].url}}">{{=carousel[0].nome_aba}}<small>{{=carousel[0].descricao_aba}}</small></a></li>
+            {{for index, aba in enumerate(carousel[1:], 1):}}
+                <li data-target="#myCarousel" data-slide-to="{{=index}}"><a href="{{aba.url}}">{{=aba.nome_aba}}<small>{{=aba.descricao_aba}}</small></a></li>
+            {{pass}}
         </ul>
     </div>
     <!-- End Carousel -->
 </div>
+{{pass}}
 
 {{for noticia in noticias:}}
 <div class="post-div">

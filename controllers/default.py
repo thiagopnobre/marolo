@@ -13,10 +13,15 @@ def index():
         orderby=~db.noticias.created_on | ~db.noticias.modified_on,
         limitby=limites
     )
+    carousel = db(db.carousel.status==1).select(
+        orderby=~db.carousel.id,
+        limitby=(0, 4),
+    )
     return {
         'noticias': noticias,
         'pagina': pagina,
-        'paginas': paginas
+        'paginas': paginas,
+        'carousel': carousel
     }
 
 
