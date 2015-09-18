@@ -48,3 +48,15 @@ db.define_table(
     Field('thumb', 'upload'),
     Field('preco', 'double')
 )
+
+#Carousel
+db.define_table(
+    'carousel',
+    Field('nome_aba', length=16, notnull=True),
+    Field('descricao_aba', length=24, notnull=True),
+    Field('titulo', length=16, notnull=True),
+    Field('descricao', length=256, notnull=True),
+    Field('imagem', 'upload'),
+    Field('url', length=256, notnull=True),
+    Field('status'),
+)
