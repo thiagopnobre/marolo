@@ -49,7 +49,7 @@ Instalação
 
 - Baixe o repositório git
 - Extraia na pasta applications do web2py
-- No diretório raiz do web2py execute o script python setup_project.py com as opções `-p` `-cp` `-r` (Execute `python setup_project.py -h` para mais opções disponíveis):
+- No diretório /marolo dentro de /applications  execute o script python setup_project.py com as opções `-p` `-cp` `-r` (Execute `python setup_project.py -h` para mais opções disponíveis):
 `python setup_project.py -p -cp -r`
 - Execute o web2py e a aplicação já estará rodando
 
