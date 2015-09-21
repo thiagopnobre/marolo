@@ -111,3 +111,20 @@ for i in xrange(9):
             'descricao': 'Lorem ipsum dolor sit amet, consectetur adipisicing'
             'elit. Porro necessitatibus facere velit labore praesentium',
         })
+
+# Banner
+for i in xrange(4):
+    db.carousel.insert(
+        **{
+            'nome_aba': 'Aba {}'.format(i),
+            'descricao_aba': 'Lorem ipsum dolor sit',
+            'titulo': 'Aba com algum conteúdo',
+            'descricao': 'Lorem ipsum dolor sit amet, '
+            'consetetur sadipscing elitr, sed diam nonumy '
+            'eirmod tempor invidunt ut labore et dolore magna'
+            ' aliquyam erat, sed diam voluptua. '
+            'Lorem ipsum dolor sit amet, '
+            'consetetur sadipscing elitr.',
+            'url': '#',
+            'status': 1
+        })
