@@ -12,7 +12,7 @@
                 {{if carousel[0].imagem:}}
                 <img src="{{=URL('download', args=aba.imagem)}}">
                 {{else:}}
-                <img src="https://placeholdit.imgix.net/~text?bg=53341E&w=1200&h=400">
+                <img src="{{=URL('static','images/brown.png')}}">
                 {{pass}}
                 <div class="carousel-caption">
                     <h3>
@@ -27,7 +27,7 @@
                 {{if aba.imagem:}}
                 <img src="{{=URL('download', args=aba.imagem)}}">
                 {{else:}}
-                <img src="https://placeholdit.imgix.net/~text?bg=53341E&w=1200&h=400">
+                <img src="{{=URL('static','images/brown.png')}}">
                 {{pass}}
                 <div class="carousel-caption">
                     <h3>
