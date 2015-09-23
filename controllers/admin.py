@@ -153,7 +153,7 @@ def editar():
 def associacao():
     path = os.path.dirname(os.path.abspath(__file__))
     with open(path + '/../views/default/sobre_associacao.html', 'r') as arq:
-            sobre_associacao = arq.read()
+        sobre_associacao = arq.read()
     form = SQLFORM.factory(
         Field(
             'texto',
@@ -163,12 +163,37 @@ def associacao():
             requires=IS_NOT_EMPTY()
         ),
         hideerror=True,
-        message_onfailure= T('O conteúdo não pode ser vazio.')
+        message_onfailure=T('O conteúdo não pode ser vazio.')
     )
     if form.process().accepted:
         with open(path + '/../views/default/sobre_associacao.html',
                   'w') as arq:
             arq.write(form.vars.texto)
         session.flash = T('Sobre a associação editado com sucesso!')
+        redirect(URL('admin', 'listar', args='noticias'))
+    return {'form': form}
+
+
+@auth.requires_membership('admin')
+def projeto():
+    path = os.path.dirname(os.path.abspath(__file__))
+    with open(path + '/../views/default/sobre_projeto.html', 'r') as arq:
+        sobre_projeto = arq.read()
+    form = SQLFORM.factory(
+        Field(
+            'texto',
+            'text',
+            widget=ckeditor.widget,
+            default=sobre_projeto,
+            requires=IS_NOT_EMPTY()
+        ),
+        hideerror=True,
+        message_onfailure=T('O conteúdo não pode ser vazio.')
+    )
+    if form.process().accepted:
+        with open(path + '/../views/default/sobre_projeto.html',
+                  'w') as arq:
+            arq.write(form.vars.texto)
+        session.flash = T('Sobre o projeto editado com sucesso!')
         redirect(URL('admin', 'listar', args='noticias'))
     return {'form': form}

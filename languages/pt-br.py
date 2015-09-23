@@ -169,6 +169,7 @@
 'Sign Up': 'Sign Up',
 'Size of cache:': 'Tamanho do cache:',
 'Sobre a associação editado com sucesso!': 'Sobre a associação editado com sucesso!',
+'Sobre o projeto editado com sucesso!': 'Sobre o projeto editado com sucesso!',
 'state': 'estado',
 'Statistics': 'Estatísticas',
 'Stylesheet': 'Folha de estilo',
