@@ -27,12 +27,18 @@ def index():
 
 def noticias():
     permalink = request.args(0, otherwise='/')
-    noticia = db.noticias(permalink=permalink) or redirect('/')
+    noticia = db.noticias(permalink=permalink)
+    if not noticia:
+        session.flash = T('Desculpe, não existem noticias cadastradas ainda')
+        redirect('/')
     return dict(noticia=noticia)
 
 
 def membros():
     membros = db(db.membros).select().as_list()
+    if not membros:
+        session.flash = T('Desculpe, não existem membros cadastrados ainda')
+        redirect('/')
     linhas = (len(membros) // 3) + 1
     matriz = []
     for _ in range(linhas):
@@ -59,6 +65,9 @@ def eventos():
     parametro_ano = request.args(0, cast=int, default=request.now.year)
     ano_atual = request.now.year
     eventos = db(db.eventos.dia.year() == parametro_ano).select()
+    if not eventos:
+        session.flash = T('Desculpe, não existem eventos cadastrados ainda')
+        redirect('/')
     minimo = db.eventos.dia.min()
     maximo = db.eventos.dia.max()
     extremos = db().select(maximo, minimo).first()
@@ -98,6 +107,9 @@ def produtos():
     pagina = request.args(0, cast=int, default=1)
     itens_por_pagina = 9
     total = db(db.produtos).count()
+    if not total:
+        session.flash = T('Desculpe, não existem produtos cadastrados ainda')
+        redirect('/')
     paginas = total / itens_por_pagina
     if total % itens_por_pagina:
         paginas += 1
