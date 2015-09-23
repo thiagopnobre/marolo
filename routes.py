@@ -17,6 +17,8 @@ routes_in = (
     (r'/admin', r'/marolo/admin/user/login'),
     (r'/admin/register', r'/marolo/admin/register'),
     (r'/admin/listar_usuarios', r'/marolo/admin/listar_usuarios'),
+    (r'/admin/projeto', r'/marolo/admin/projeto'),
+    (r'/admin/associacao', r'/marolo/admin/associacao'),
     (r'/admin/editar_usuario/$user_id',
      r'/marolo/admin/editar_usuario/$user_id'),
     (r'/admin/$action', r'/marolo/admin/user/$action'),
@@ -28,28 +30,4 @@ routes_in = (
      r'/marolo/static/images/\g<imagem>'),
 )
 
-routes_out = (
-    (r'/marolo/default/index', r'/index'),
-    (r'/marolo/default/index/$pagina', r'/index/$pagina'),
-    (r'/marolo/default/noticias/$permalink', r'/noticias/$permalink'),
-    (r'/marolo/default/membros', r'/membros'),
-    (r'/marolo/default/projeto', r'/projeto'),
-    (r'/marolo/default/associacao', r'/associacao'),
-    (r'/marolo/default/produtos', r'/produtos'),
-    (r'/marolo/default/produtos/$pagina', r'/produtos/$pagina'),
-    (r'/marolo/default/eventos', r'/eventos'),
-    (r'/marolo/default/eventos/$ano', r'/eventos/$ano'),
-    (r'/marolo/default/contato', r'/contato'),
-    (r'/marolo/admin/user/login', r'/admin'),
-    (r'/marolo/admin/register', r'/admin/register'),
-    (r'/marolo/admin/listar_usuarios', r'/admin/listar_usuarios'),
-    (r'/marolo/admin/editar_usuario/$user_id',
-     r'/admin/editar_usuario/$user_id'),
-    (r'/marolo/admin/user/$action', r'/admin/$action'),
-    (r'/marolo/admin/inserir/$argumento', r'/admin/inserir/$argumento'),
-    (r'/marolo/admin/listar/$argumento', r'/admin/listar/$argumento'),
-    (r'/marolo/admin/editar/$argumento/$cod',
-     r'/admin/editar/$argumento/$cod'),
-    (r'/marolo/static/images/\g<imagem>',
-     r'/static/images/(?P<imagem>[\w./-]+)'),
-)
+routes_out = ((saida, entrada) for entrada, saida in routes_in)

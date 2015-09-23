@@ -1,3 +1,6 @@
+import os
+
+
 def index():
     redirect(URL(c='admin', f='user'))
 
@@ -50,9 +53,9 @@ def listar_usuarios():
 
 @auth.requires_membership('admin')
 def editar_usuario():
-    user_id = request.args(0 , cast=int, otherwise=URL('default', 'index'))
-    query = db.auth_user.id==user_id
-    query &= db.auth_user.id==db.auth_membership.user_id
+    user_id = request.args(0, cast=int, otherwise=URL('default', 'index'))
+    query = db.auth_user.id == user_id
+    query &= db.auth_user.id == db.auth_membership.user_id
     user_data = db(query).select(
         db.auth_user.first_name,
         db.auth_user.last_name,
@@ -76,10 +79,10 @@ def editar_usuario():
     )
 
     if form_update.process().accepted:
-        db(db.auth_user.id==user_id).update(
+        db(db.auth_user.id == user_id).update(
             **db.auth_user._filter_fields(form_update.vars)
         )
-        db(db.auth_membership.user_id==user_id).update(
+        db(db.auth_membership.user_id == user_id).update(
             **db.auth_membership._filter_fields(form_update.vars)
         )
         session.flash = T('Usuário editado com sucesso!')
@@ -144,3 +147,53 @@ def editar():
     elif form.errors:
         response.flash = 'Formulário contem erros'
     return dict(argumento=argumento, form=form)
+
+
+@auth.requires_membership('admin')
+def associacao():
+    path = os.path.dirname(os.path.abspath(__file__))
+    with open(path + '/../views/default/sobre_associacao.html', 'r') as arq:
+        sobre_associacao = arq.read()
+    form = SQLFORM.factory(
+        Field(
+            'texto',
+            'text',
+            widget=ckeditor.widget,
+            default=sobre_associacao,
+            requires=IS_NOT_EMPTY()
+        ),
+        hideerror=True,
+        message_onfailure=T('O conteúdo não pode ser vazio.')
+    )
+    if form.process().accepted:
+        with open(path + '/../views/default/sobre_associacao.html',
+                  'w') as arq:
+            arq.write(form.vars.texto)
+        session.flash = T('Sobre a associação editado com sucesso!')
+        redirect(URL('admin', 'listar', args='noticias'))
+    return {'form': form}
+
+
+@auth.requires_membership('admin')
+def projeto():
+    path = os.path.dirname(os.path.abspath(__file__))
+    with open(path + '/../views/default/sobre_projeto.html', 'r') as arq:
+        sobre_projeto = arq.read()
+    form = SQLFORM.factory(
+        Field(
+            'texto',
+            'text',
+            widget=ckeditor.widget,
+            default=sobre_projeto,
+            requires=IS_NOT_EMPTY()
+        ),
+        hideerror=True,
+        message_onfailure=T('O conteúdo não pode ser vazio.')
+    )
+    if form.process().accepted:
+        with open(path + '/../views/default/sobre_projeto.html',
+                  'w') as arq:
+            arq.write(form.vars.texto)
+        session.flash = T('Sobre o projeto editado com sucesso!')
+        redirect(URL('admin', 'listar', args='noticias'))
+    return {'form': form}

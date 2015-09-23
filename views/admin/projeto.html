@@ -1,0 +1,10 @@
+{{extend 'layout_admin.html'}}
+{{block conteudo}}
+<div class="row admin-content" >
+<h1 class="text-success">Sobre Projeto:</h1>
+    {{=form.custom.begin}}
+        {{=form.custom.widget.texto}}
+        {{=form.custom.submit}}
+    {{=form.custom.end}}
+</div>
+{{end}}
