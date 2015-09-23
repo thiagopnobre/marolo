@@ -41,7 +41,7 @@ def copy_requirements():
 
 # instalação de requisitos
 def install_requirements():
-    os.system("sudo pip install -r requirements.txt")
+    os.system("pip install -r requirements.txt")
 
 def setup():
 
