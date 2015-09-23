@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 
 def index():
     pagina = request.args(0, cast=int, default=1)
@@ -52,13 +52,30 @@ def membros():
         'matriz': matriz
     }
 
-
+path = os.path.dirname(os.path.abspath(__file__))
 def associacao():
-    return {}
+    try:
+        if os.stat(path + '/../views/default/sobre_associacao.html').st_size == 0:
+            session.flash = T('Desculpe, não existe descrição cadastrada ainda')
+            redirect('/')
+        else:
+            return {}
+    except OSError:
+        session.flash = T('Desculpe, não existe descrição cadastrada ainda')
+        redirect('/')
 
 
 def projeto():
-    return {}
+    try:
+        path = os.path.dirname(os.path.abspath(__file__))
+        if os.stat(path + '/../views/default/sobre_projeto.html').st_size == 0:
+            session.flash = T('Desculpe, não existe descrição cadastrada ainda')
+            redirect('/')
+        else:
+            return {}
+    except OSError:
+        session.flash = T('Desculpe, não existe descrição cadastrada ainda')
+        redirect('/')
 
 
 def eventos():
