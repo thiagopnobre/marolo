@@ -1,0 +1,62 @@
+{{extend 'layout_admin.html'}}
+
+{{block conteudo}}
+<div class="row admin-content" >
+    <h1 class="text-success">Banners:</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th></th>
+          <th><span class="text-muted">*Somente os 4 primeiros ativos estarão presente no carousel</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{for valor in banners:}}
+        <tr>
+            <td>{{=valor.nome_aba}}</td>
+            <td><a href="#" class="btn btn-sm btn-success">Editar</a></td>
+            <td>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-success {{if valor.status == 'ativo':}}active{{pass}}" onclick="altera_estado({{=valor.id}}, 'ativo')">
+                        <input type="radio" name="options" autocomplete="off" }> ativo
+                    </label>
+                    <label class="btn btn-success {{if valor.status == 'inativo':}}active{{pass}}" onclick="altera_estado({{=valor.id}}, 'inativo')">
+                        <input type="radio" name="options" autocomplete="off"> inativo
+                    </label>
+                </div>
+            </td>
+        </tr>
+        {{pass}}
+      </tbody>
+
+    </table>
+    <div id="paginacao">
+        <ul class="pager">
+            {{ if pagina != 1: }}
+            <li class="previous">
+                <a href="{{ =URL(args=pagina-1) }}">&larr; Anterior</a>
+            </li>
+            {{ pass }}
+
+            {{ if pagina != paginas: }}
+            <li class="next">
+                <a href="{{ =URL(args=pagina+1) }}">Próxima &rarr;</a>
+            </li>
+            {{ pass }}
+        </ul>
+    </div>
+</div>
+{{end}}
+
+{{block scripts}}
+    <script>
+        function altera_estado(id, estado) {
+            $.ajax({
+              method: "POST",
+              url: "{{=URL('banners', 'altera_estado')}}",
+              data: { "id": id, "estado": estado}
+            })
+        }
+    </script>
+{{end}}

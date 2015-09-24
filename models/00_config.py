@@ -39,3 +39,6 @@ auth.settings.formstyle = 'bootstrap3_stacked'
 
 # Language force for pt-br
 T.force('pt-br')
+
+# Don't use generic views
+response.generic_patterns = []
