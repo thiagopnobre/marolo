@@ -13,7 +13,7 @@ def index():
         orderby=~db.noticias.created_on | ~db.noticias.modified_on,
         limitby=limites
     )
-    carousel = db(db.carousel.status==1).select(
+    carousel = db(db.carousel.status == 'ativo').select(
         orderby=~db.carousel.id,
         limitby=(0, 4),
     )

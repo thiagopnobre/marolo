@@ -165,9 +165,7 @@ db.carousel.url.requires = [
     IS_LENGTH(256, error_message=T('Tamanho máximo de 256 caracteres.')),
     IS_URL()
 ]
-db.carousel.status.requires = [
-    IS_IN_SET(
-        ['ativa', 'inativa'],
-        error_message=T('Por favor selecione uma das opções')
-    )
-]
+db.carousel.status.requires = IS_IN_SET(
+    ['ativo', 'inativo'],
+    error_message=T('Por favor selecione uma das opções')
+)

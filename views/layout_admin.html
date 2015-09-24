@@ -44,6 +44,8 @@
                       <li><a href="{{=URL('inserir',args=['eventos'])}}">Evento</a></li>
                       {{if auth.has_membership('admin'):}}<li><a href="{{=URL('inserir',args=['apoiadores'])}}">Apoiador</a></li>{{pass}}
                       <li><a href="{{=URL('inserir',args=['produtos'])}}">Produto</a></li>
+                      <li><a href="#">Banner</a></li>
+
                     </ul>
                   </li>
                   <li class="dropdown">
@@ -54,6 +56,7 @@
                       <li><a href="{{=URL('listar',args=['eventos'])}}">Evento</a></li>
                       {{if auth.has_membership('admin'):}}<li><a href="{{=URL('listar',args=['apoiadores'])}}">Apoiador</a></li>{{pass}}
                       <li><a href="{{=URL('listar',args=['produtos'])}}">Produto</a></li>
+                      <li><a href="#">Banner</a></li>
                     </ul>
                   </li>
                   {{if auth.is_logged_in():}}

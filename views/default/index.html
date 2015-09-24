@@ -10,7 +10,7 @@
         <div class="carousel-inner">
             <div class="item active">
                 {{if carousel[0].imagem:}}
-                <img src="{{=URL('download', args=aba.imagem)}}">
+                <img src="{{=URL('download', args=carousel[0].imagem)}}">
                 {{else:}}
                 <img src="{{=URL('static','images/brown.png')}}">
                 {{pass}}

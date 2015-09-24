@@ -126,5 +126,5 @@ for i in xrange(4):
             'Lorem ipsum dolor sit amet, '
             'consetetur sadipscing elitr.',
             'url': '#',
-            'status': 1
+            'status': 'ativo'
         })
