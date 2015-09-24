@@ -15,7 +15,7 @@
         {{for valor in banners:}}
         <tr>
             <td>{{=valor.nome_aba}}</td>
-            <td><a href="#" class="btn btn-sm btn-success">Editar</a></td>
+            <td><a href="{{=URL('admin', 'editar',args=['banners',valor.id])}}" class="btn btn-sm btn-success">Editar</a></td>
             <td>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-success {{if valor.status == 'ativo':}}active{{pass}}" onclick="altera_estado({{=valor.id}}, 'ativo')">
