@@ -48,7 +48,7 @@ Instalação
 `python setup_project.py -p -cp -r`
 ou 
 `python setup_project.py -p -cp -r --sudo` para instalar bibliotecas
-necessárias para rodar o sistema diretamente no sistema operacional.(não recomendado). 
+necessárias para rodar o sistema diretamente no sistema operacional(não recomendado). 
 - Execute o web2py e a aplicação já estará rodando
 
 Como contribuir
@@ -103,7 +103,7 @@ mas independente da plataforma ao fim deste post, eu aponto links úteis.
 
 **Tentei rodar script setup_project.py sem a opção `--sudo ` e ocorre erro 
 de permissão.**
-**R:** É recomendado apreder sobre o uso de ambientes virtuais python.
+**R:** É recomendado aprender sobre o uso de ambientes virtuais python.
 Dois videos insteressantes são:
 
 [Virtualenv no Linux/Mac](https://www.youtube.com/watch?v=9ptewqAEjNc)
