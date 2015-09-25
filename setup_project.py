@@ -1,32 +1,33 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import os, glob, argparse
+u"""Script para auxiliar instalação  e manutenção do projeto."""
+import os
+import glob
+import argparse
 from shutil import copy2
 
-# repovoa banco de dados
+
 def repopulate_db():
+    u"""Repovoa banco de dados."""
     delete_db()
     populate_db()
 
-# povoa banco de dados
-def populate_db():
-    os.system("../../web2py.py -S marolo -M -R ./applications/marolo/populate_db.py")
 
-# apaga banco de dados
+def populate_db():
+    u"""Povoa banco de dados."""
+    os.system(
+        "../../web2py.py -S marolo -M -R ./applications/marolo/populate_db.py")
+
+
 def delete_db():
+    u"""Apaga banco de dados."""
     files = glob.glob('./databases/*')
     for f in files:
         os.remove(f)
 
-# copia de requisitos (appconfig.ini e routes.py)
+
 def copy_requirements():
-    
-    if not os.path.exists('private'):
-        os.mkdir('private')
-
-    if not os.path.exists('databases'):
-        os.mkdir('databases')
-
+    u"""Cópia de requisitos (appconfig.ini e routes.py)."""
     if not os.path.exists('private/appconfig.ini'):
         try:
             copy2('./appconfig.ini', 'private/appconfig.ini')
@@ -39,43 +40,82 @@ def copy_requirements():
         except:
             print('routes.py not found')
 
-# instalação de requisitos
-def install_requirements():
-    os.system("pip install -r requirements.txt")
+
+def install_requirements(sudo):
+    u"""Instala ou atualiza bibliotecas necessárias."""
+    if sudo and os.name == "posix":
+        os.system(" sudo pip install -U -r requirements.txt")
+    os.system("pip install -U -r requirements.txt")
+
 
 def setup():
+    u"""Adição de argumentos para interface do terminal."""
+    if not os.path.exists('private'):
+        os.mkdir('private')
 
-    # adição de argumentos para interface do terminal
-    parser = argparse.ArgumentParser(prog='setup_project.py', description='Automatização do projeto importando configurações e banco de dados.')
-    parser.add_argument('-p', help='povoar banco de dados', action="store_true")
-    parser.add_argument('-d', help='apagar banco de dados', action="store_true")
-    parser.add_argument('-rp', help='repovoar banco de dados', action="store_true")
-    parser.add_argument('-cp', help='copiar dependências', action="store_true")
-    parser.add_argument('-r', help='instalar dependências', action="store_true")
+    if not os.path.exists('databases'):
+        os.mkdir('databases')
+
+    parser = argparse.ArgumentParser(
+        prog='setup_project.py',
+        description='Automatização do projeto'
+        ' importando configurações e banco de dados.'
+    )
+    parser.add_argument(
+        '-p',
+        help='povoar banco de dados',
+        action="store_true"
+    )
+    parser.add_argument(
+        '-d',
+        help='apagar banco de dados',
+        action="store_true"
+    )
+    parser.add_argument(
+        '-rp',
+        help='repovoar banco de dados',
+        action="store_true"
+    )
+    parser.add_argument(
+        '-cp',
+        help='copiar dependências',
+        action="store_true"
+    )
+    parser.add_argument(
+        '-r',
+        help='instalar dependências',
+        action="store_true"
+    )
+    parser.add_argument(
+        '--sudo',
+        help='argumento utilizando em conjunto com -r para indicar'
+        ' que comando será feito utilizando superusuário',
+        action="store_true"
+    )
 
     # parse args
     args = parser.parse_args()
 
     if args.r:
-        install_requirements()
+        install_requirements(sudo=args.sudo)
 
     if args.cp:
         copy_requirements()
-        print('dependencies set')
+        print('Bibliotecas instaladas ou atualizadas com sucesso!')
 
     # testa argumentos
     if args.p:
         populate_db()
+        print('Banco de dados esta preenchido.')
 
     if args.d:
         delete_db()
-        print('database deleted.')
+        print('O banco de dados foi deletado.')
 
     if args.rp:
         repopulate_db()
-        print('database repopulated.')
+        print('O banco de dados foi repovoado.')
 
 
 if __name__ == '__main__':
     setup()
-    
