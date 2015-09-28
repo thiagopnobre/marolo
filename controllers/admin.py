@@ -165,6 +165,7 @@ def associacao():
         hideerror=True,
         message_onfailure=T('O conteúdo não pode ser vazio.')
     )
+    form.elements('label', replace=None)
     if form.process().accepted:
         with open(path + '/../views/default/sobre_associacao.html',
                   'w') as arq:
@@ -190,6 +191,7 @@ def projeto():
         hideerror=True,
         message_onfailure=T('O conteúdo não pode ser vazio.')
     )
+    form.elements('label', replace=None)
     if form.process().accepted:
         with open(path + '/../views/default/sobre_projeto.html',
                   'w') as arq:
