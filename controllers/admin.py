@@ -75,10 +75,17 @@ def editar_usuario():
     form_update = SQLFORM.factory(
         db.auth_user,
         db.auth_membership,
+        Field('apagar', 'boolean', default=False, label='Marque para apagar'),
         submit_button="Enviar"
     )
 
     if form_update.process().accepted:
+        if form_update.vars.apagar:
+            db(db.auth_user.id == user_id).delete()
+            db(db.auth_membership.user_id == user_id).delete()
+            session.flash = T('Usuário apagado com sucesso!')
+            redirect(URL('admin', 'listar_usuarios'))
+
         db(db.auth_user.id == user_id).update(
             **db.auth_user._filter_fields(form_update.vars)
         )
