@@ -92,6 +92,12 @@ def setup():
         ' que comando será feito utilizando superusuário',
         action="store_true"
     )
+    parser.add_argument(
+        '--all',
+        help='argumento utilizando para executar todas as opções'
+        ' necessárias para execução do projeto',
+        action="store_true"
+    )
 
     # parse args
     args = parser.parse_args()
@@ -116,6 +122,11 @@ def setup():
         repopulate_db()
         print('O banco de dados foi repovoado.')
 
+    if args.all:
+        install_requirements(sudo=args.sudo)
+        copy_requirements()
+        repopulate_db()
+        print('Todos requisitos instalados.')
 
 if __name__ == '__main__':
     setup()
