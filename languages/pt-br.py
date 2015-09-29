@@ -198,6 +198,7 @@
 'Use (...)&(...) for AND, (...)|(...) for OR, and ~(...)  for NOT to build more complex queries.': 'Use (...)&(...) para AND, (...)|(...) para OR, e ~(...)  para NOT para construir consultas mais complexas.',
 'User ID': 'ID do Usuário',
 'User Voice': 'Opinião dos usuários',
+'Usuário apagado com sucesso!': 'Usuário apagado com sucesso!',
 'Usuário cadastrado com sucesso!': 'Usuário cadastrado com sucesso!',
 'Usuário editado com sucesso!': 'Usuário editado com sucesso!',
 'Valor inválido para preço. Quando especificado deve ser maior do que 0 e no formato 2,50.': 'Valor inválido para preço. Quando especificado deve ser maior do que 0 e no formato 2,50.',
