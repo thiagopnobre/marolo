@@ -44,11 +44,9 @@ Instalação
 
 - Baixe o repositório git
 - Extraia na pasta applications do web2py
-- No diretório /marolo dentro de /applications  execute o script python setup_project.py com as opções `-p` `-cp` `-r` (Execute `python setup_project.py -h` para mais opções disponíveis):
-`python setup_project.py -p -cp -r`
-ou 
-`python setup_project.py -p -cp -r --sudo` para instalar bibliotecas
-necessárias para rodar o sistema diretamente no sistema operacional(não recomendado). 
+- No diretório /marolo dentro de /applications  execute o script `startup.sh`
+utilizando o comando:
+`./startup.sh`
 - Execute o web2py e a aplicação já estará rodando
 
 FAQ
@@ -71,11 +69,11 @@ Se utiliza Ubuntu recomendo ler
 [este](http://cassiobotaro.github.io/instalando-pillow.html) tutorial,
 mas independente da plataforma ao fim deste post, eu aponto links úteis.
 
-**Tentei rodar script setup_project.py sem a opção `--sudo ` e ocorre erro 
+**Tentei rodar script setup_project.py sem a opção `sudo ` e ocorre erro 
 de permissão.**
 **R:** É recomendado aprender sobre o uso de ambientes virtuais python.
-Dois videos insteressantes são:
+Um vídeo interessante:
 
 [Virtualenv no Linux/Mac](https://www.youtube.com/watch?v=9ptewqAEjNc)
 
-[Virtualenv no Windows](https://www.youtube.com/watch?v=AnIDjAilIzM)
+Se ainda insiste instalar diretamente no sistema operacional, vá no arquivo `startup.sh` e modifique a quarta linha para `pip install --user -U -r requirements.txt`. 
