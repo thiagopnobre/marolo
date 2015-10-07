@@ -1,16 +1,32 @@
+# -*- coding: utf-8 -*-
+u"""Controlador responsável pelas telas de administração do site.
+
+index() - Redireciona da tela inicial para a tela de login de administrador.
+user() - Expõe as telas de usuário, exceto a tela de registro.
+register() - Tela para cadastro de novos usuários.
+listar_usuarios() - Retorna os usuários em ordem decrescente de cadastro.
+editar_usuario() - Edita um usuário modificando seus atributos.
+inserir() - Insere um novo registro.
+listar() - Retorna os registros em ordem decrescente.
+editar() - Edita um registro modificando seus atributos.
+associacao() - Edita as informações sobre a associação.
+projeto() - Edita as informações sobre o projeto.
+"""
+
+
 import os
 
 
 def index():
+    """Redireciona para a tela de login de administrador."""
     redirect(URL(c='admin', f='user'))
 
 
 def user():
     """
-    exposes:
+    Expõe:
     http://..../[app]/default/user/login
     http://..../[app]/default/user/logout
-    http://..../[app]/default/user/register
     http://..../[app]/default/user/profile
     http://..../[app]/default/user/retrieve_password
     http://..../[app]/default/user/change_password
@@ -18,13 +34,16 @@ def user():
     use @auth.requires_login()
         @auth.requires_membership('group name')
         @auth.requires_permission('read','table name',record_id)
-    to decorate functions that need access control
+    para decorar funções que precisam de controle de acesso
     """
     return dict(form=auth())
 
 
 @auth.requires_membership('admin')
 def register():
+    """Permite que um usuário com permissão de admin registre novos usuários.
+    Usuários podem ter permissão de admin ou de editor.
+    """
     db.auth_membership.user_id.writable = False
     db.auth_membership.user_id.readable = False
     form_register = SQLFORM.factory(
@@ -47,12 +66,18 @@ def register():
 
 @auth.requires_membership('admin')
 def listar_usuarios():
+    """Lista para um usuário com permissão de admin, todos os usuários em ordem
+    decrescente.
+    """
     lista = db(db.auth_user).select(orderby=~db.auth_user.id)
     return dict(lista=lista)
 
 
 @auth.requires_membership('admin')
 def editar_usuario():
+    """Permite que um usuário com permissão de admin edite ou apague um usuário.
+    Observação: Não é possível editar a senha de um usuário.
+    """
     user_id = request.args(0, cast=int, otherwise=URL('default', 'index'))
     query = db.auth_user.id == user_id
     query &= db.auth_user.id == db.auth_membership.user_id
@@ -100,6 +125,16 @@ def editar_usuario():
 
 @auth.requires_login()
 def inserir():
+    """Permite inserir um novo registro.
+    Um registro pode ser:
+        - Uma notícia;
+        - Um evento;
+        - Um produto;
+        - Um membro;
+        - Um apoiador.
+    Observação: Somente usuários com permissão de admin podem inserir novos
+    membros e apoiadores.
+    """
     argumento = request.args(0) or redirect(URL('default', 'index'))
     lista_tabelas = ['noticias', 'eventos', 'produtos']
     if auth.has_membership('admin'):
@@ -119,6 +154,16 @@ def inserir():
 
 @auth.requires_login()
 def listar():
+    """Lista registros em ordem decrescente.
+    Um registro pode ser:
+        - Uma notícia;
+        - Um evento;
+        - Um produto;
+        - Um membro;
+        - Um apoiador.
+    Observação: Somente usuários com permissão de admin podem listar membros e
+    apoiadores.
+    """
     argumento = request.args(0) or redirect(URL('default', 'index'))
     lista_tabelas = ['noticias', 'eventos', 'produtos']
     if auth.has_membership('admin'):
@@ -132,6 +177,16 @@ def listar():
 
 @auth.requires_login()
 def editar():
+    """Permite editar um registro.
+    Um registro pode ser:
+        - Uma notícia;
+        - Um evento;
+        - Um produto;
+        - Um membro;
+        - Um apoiador.
+    Observação: Somente usuários com permissão de admin podem editar membros e
+    apoiadores.
+    """
     argumento = request.args(0) or redirect(URL('default', 'index'))
     lista_tabelas = ['noticias', 'eventos', 'produtos']
     if auth.has_membership('admin'):
@@ -158,6 +213,9 @@ def editar():
 
 @auth.requires_membership('admin')
 def associacao():
+    """Permite que um usuário com permissão de admin edite as informações sobre
+    a associação.
+    """
     path = os.path.dirname(os.path.abspath(__file__))
     with open(path + '/../views/default/sobre_associacao.html', 'r') as arq:
         sobre_associacao = arq.read()
@@ -179,11 +237,14 @@ def associacao():
             arq.write(form.vars.texto)
         session.flash = T('Sobre a associação editado com sucesso!')
         redirect(URL('admin', 'listar', args='noticias'))
-    return {'form': form}
+    return dict(form=form)
 
 
 @auth.requires_membership('admin')
 def projeto():
+    """Permite que um usuário com permissão de admin edite as informações sobre
+    o projeto.
+    """
     path = os.path.dirname(os.path.abspath(__file__))
     with open(path + '/../views/default/sobre_projeto.html', 'r') as arq:
         sobre_projeto = arq.read()
@@ -205,4 +266,4 @@ def projeto():
             arq.write(form.vars.texto)
         session.flash = T('Sobre o projeto editado com sucesso!')
         redirect(URL('admin', 'listar', args='noticias'))
-    return {'form': form}
+    return dict(form=form)
