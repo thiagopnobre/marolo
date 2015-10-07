@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 u"""Controlador responsável pelo controle do banner da tela inicial.
 
 listar() - Retorna os banners de forma paginada.
-altera_estado() - Alterna o estado de uma aba para ativa ou inativa
-inserir() - Insere um novo banner
-editar() - Edita um banner modificando seus atributos.
+altera_estado() - Alterna o estado de uma aba para ativa ou inativa.
+inserir() - Insere um novo banner.
+editar() - Edita um banner modificando seus atributos..
 """
 
 
@@ -56,7 +57,7 @@ def inserir():
 
 @auth.requires_login()
 def editar():
-    """Edita um banner modificando seus atributos."""
+    """Deleta ou edita um banner modificando seus atributos."""
     cod = request.args(0, cast=int, otherwise=URL('default', 'index'))
     form = SQLFORM(
         db.carousel,
