@@ -49,7 +49,7 @@ db.define_table(
     Field('preco', 'double')
 )
 
-#Carousel
+# Carousel
 db.define_table(
     'carousel',
     Field('nome_aba', length=16, notnull=True),
