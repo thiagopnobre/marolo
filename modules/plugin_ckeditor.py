@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+"""web2py_ckeditor4: web2py plugin for CKEditor v4: http://ckeditor.com/ ."""
 # -*- coding: utf-8 -*-
-"""
-web2py_ckeditor4: web2py plugin for CKEditor v4: http://ckeditor.com/
-"""
+import os
+from gluon import *
+from gluon.storage import Storage
+from gluon.sqlhtml import FormWidget
 
 __author__ = 'Tim Richardson'
 __email__ = 'tim@growthpath.com.au'
@@ -13,20 +14,13 @@ __version__ = '1.1'
 # possible options: Prototype, Development, Production
 __status__ = 'Development'
 
-import os
-from gluon import *
-from gluon.storage import Storage
-from gluon.sqlhtml import FormWidget
 
 class CKEditor(object):
-    """
-    Integrates CKEditor nicely into web2py.
-    """
-    def __init__(self, db, download_url=('default','download')):
-        """
-        Initializes the CKEditor module. Requires a DAL instance.
-        """
 
+    """Integrates CKEditor nicely into web2py."""
+
+    def __init__(self, db, download_url=('default', 'download')):
+        """Initialize the CKEditor module. Requires a DAL instance."""
         self.db = db
 
         self.settings = Storage()
@@ -46,23 +40,44 @@ class CKEditor(object):
 
     def define_tables(self, migrate=True, fake_migrate=False):
         """
-        Called after settings are set to create the required tables for dealing
-        with file uploads from CKEditor.
+        Define required tables for dealing with file uploads from CKEditor.
+
+        Called after settings are set to create the required tables for
+        dealing with file uploads from CKEditor.
         """
         upload_name = self.settings.table_upload_name
 
-        self.settings.table_upload = self.db.define_table(upload_name,
-            Field('title', length=255),
-            Field('filename', length=255),
-            Field('flength', 'integer'),
-            Field('mime_type', length=128),
-            Field('upload', 'upload', uploadfs=self.settings.uploadfs, requires=[IS_NOT_EMPTY(), IS_LENGTH(maxsize=self.settings.file_length_max, minsize=self.settings.file_length_min)]),
+        self.settings.table_upload = self.db.define_table(
+            upload_name,
+            Field(
+                'title',
+                length=255
+            ),
+            Field(
+                'filename',
+                length=255
+            ),
+            Field(
+                'flength',
+                'integer'
+            ),
+            Field(
+                'mime_type',
+                length=128
+            ),
+            Field(
+                'upload',
+                'upload',
+                uploadfs=self.settings.uploadfs,
+                requires=[IS_NOT_EMPTY(), IS_LENGTH(
+                    maxsize=self.settings.file_length_max,
+                    minsize=self.settings.file_length_min)]
+            ),
             *self.settings.extra_fields.get(upload_name, []),
-            migrate = migrate,
-            fake_migrate = fake_migrate,
-            format = '%(title)s'
+            migrate=migrate,
+            fake_migrate=fake_migrate,
+            format='%(title)s'
         )
-
 
     def widget(self, field, value, **attributes):
         """
@@ -71,9 +86,9 @@ class CKEditor(object):
         db.table.field.widget = ckeditor.widget to use the CKEditor widget.
         """
         default = dict(
-            value = value,
-            _cols = 80,
-            _rows = 10
+            value=value,
+            _cols=80,
+            _rows=10
         )
 
         attributes = FormWidget._attributes(field, default, **attributes)
@@ -88,14 +103,14 @@ class CKEditor(object):
 
     def handle_upload(self):
         """
-        Gets an upload from CKEditor and returns the new filename that
+        Get an upload from CKEditor and returns the new filename that
         can then be inserted into a database. Returns (new_filename,
         old_filename, length, mime_type)
         """
         upload = current.request.vars.upload
         path = os.path.join(current.request.folder, 'uploads')
 
-        if upload != None:
+        if upload is not None:
             if hasattr(upload, 'file'):
                 form = SQLFORM.factory(
                     Field('upload', 'upload', requires=IS_NOT_EMPTY(),
@@ -132,10 +147,10 @@ class CKEditor(object):
 
     def load(self, selector=None, use_caching=True):
         """
-        Generates the required JavaScript for CKEditor. If selector is set,
+        Generate the required JavaScript for CKEditor. If selector is set,
         then immediately turns the selected HTML element(s) into CKEditor
-        instances. Otherwise, a manual JavaScript call to plugin_ckeditor_init()
-        is required with the desired selector.
+        instances. Otherwise, a manual JavaScript call to
+        plugin_ckeditor_init() is required with the desired selector.
         """
         if self.settings.loaded and use_caching:
             return XML('')
@@ -176,15 +191,83 @@ class CKEditor(object):
                         filebrowserBrowseUrl: '%(browse_url)s',
                         /*
                         toolbar: [
-                            {name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-                            {name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt']},
-                            {name: 'links', items: ['Link', 'Unlink', 'Anchor']},
-                            {name: 'insert', items: ['Image', 'Flash', 'Table', 'SpecialChar']},
-                            {name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'Source']},
+                            {
+                                name: 'clipboard',
+                                items: [
+                                    'Cut',
+                                    'Copy',
+                                    'Paste',
+                                    'PasteText',
+                                    'PasteFromWord',
+                                    '-',
+                                    'Undo',
+                                    'Redo'
+                                ]
+                            },
+                            {
+                                name: 'editing',
+                                items: [
+                                    'Find',
+                                    'Replace',
+                                    '-',
+                                    'SelectAll',
+                                    '-',
+                                    'SpellChecker',
+                                    'Scayt'
+                                ]
+                            },
+                            {
+                                name: 'links',
+                                items: ['Link', 'Unlink', 'Anchor']
+                            },
+                            {
+                                name: 'insert',
+                                items: [
+                                    'Image',
+                                    'Flash',
+                                    'Table',
+                                    'SpecialChar'
+                                ]
+                            },
+                            {
+                                name: 'tools',
+                                items: [
+                                    'Maximize',
+                                    'ShowBlocks',
+                                    '-',
+                                    'Source'
+                                ]
+                            },
                             '/',
-                            {name: 'styles', items: ['Format', 'Font', 'FontSize']},
-                            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']},
-                            {name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+                            {
+                                name: 'styles',
+                                items: ['Format', 'Font', 'FontSize']
+                            },
+                            {
+                                name: 'basicstyles',
+                                items: [
+                                    'Bold',
+                                    'Italic',
+                                    'Underline',
+                                    'Strike',
+                                    '-',
+                                    'RemoveFormat'
+                                ]
+                            },
+                            {
+                                name: 'paragraph',
+                                items: [
+                                    'NumberedList',
+                                    'BulletedList',
+                                    '-',
+                                    'Outdent',
+                                    'Indent',
+                                    'JustifyLeft',
+                                    'JustifyCenter',
+                                    'JustifyRight',
+                                    'JustifyBlock'
+                                ]
+                            },
                         ],*/
                         scayt_autoStartup: %(scayt)s,
                     }
@@ -192,42 +275,44 @@ class CKEditor(object):
                 %(immediate)s
             </script>
             """ % dict(
-                ckeditor_js = ckeditor_js,
-                jquery_js = jquery_js,
+                ckeditor_js=ckeditor_js,
+                jquery_js=jquery_js,
 
-                contents_css = contents_css,
-                upload_url = upload_url,
-                browse_url = browse_url,
-                scayt = scayt,
-                immediate = immediate,
+                contents_css=contents_css,
+                upload_url=upload_url,
+                browse_url=browse_url,
+                scayt=scayt,
+                immediate=immediate,
             )
         )
 
     def filetype(self, filename):
         """
-        Takes a filename and returns a category based on the file type.
-        Categories: word, excel, powerpoint, flash, pdf, image, video, audio, archive, other.
+        Take a filename and returns a category based on the file type.
+
+        Categories: word, excel, powerpoint, flash, pdf,
+        image, video, audio, archive, other.
         """
         parts = os.path.splitext(filename)
         if len(parts) < 2:
             return 'other'
         else:
             ext = parts[1][1:].lower()
-            if ext == 'png' or ext == 'jpg' or ext == 'jpeg' or ext == 'gif':
+            if ext in ('png', 'jpg', 'jpeg', 'gif'):
                 return 'image'
-            elif ext == 'avi' or ext == 'mp4' or ext == 'm4v' or ext == 'ogv' or ext == 'wmv' or ext == 'mpg' or ext == 'mpeg':
+            elif ext in ('avi', 'mp4', 'm4v', 'ogv', 'wmv', 'mpg', 'mpeg'):
                 return 'video'
-            elif ext == 'mp3' or ext == 'm4a' or ext == 'wav' or ext == 'ogg' or ext == 'aiff':
+            elif ext in ('mp3', 'm4a', 'wav', 'ogg', 'aiff'):
                 return 'audio'
-            elif ext == 'zip' or ext == '7z' or ext == 'tar' or ext == 'gz' or ext == 'tgz' or ext == 'bz2' or ext == 'rar':
+            elif ext in ('zip', '7z', 'tar', 'gz', 'tgz', 'bz2', 'rar'):
                 return 'archive'
-            elif ext == 'doc' or ext == 'docx' or ext == 'dot' or ext == 'dotx' or ext == 'rtf':
+            elif ext in ('doc', 'docx', 'dot', 'dotx', 'rtf'):
                 return 'word'
-            elif ext == 'xls' or ext == 'xlsx' or ext == 'xlt' or ext == 'xltx' or ext == 'csv':
+            elif ext in ('xls', 'xlsx', 'xlt', 'xltx', 'csv'):
                 return 'excel'
-            elif ext == 'ppt' or ext == 'pptx':
+            elif ext in ('ppt', 'pptx'):
                 return 'powerpoint'
-            elif ext == 'flv' or ext == 'swf':
+            elif ext in ('flv', 'swf'):
                 return 'flash'
             elif ext == 'pdf':
                 return 'pdf'
