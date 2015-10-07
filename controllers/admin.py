@@ -34,7 +34,7 @@ def user():
     use @auth.requires_login()
         @auth.requires_membership('group name')
         @auth.requires_permission('read','table name',record_id)
-    para decorar funções que precisam de controle de acesso
+    para decorar funções que precisam de controle de acesso.
     """
     return dict(form=auth())
 
