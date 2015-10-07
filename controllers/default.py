@@ -1,7 +1,22 @@
 # -*- coding: utf-8 -*-
+u"""Controlador responsável pelo controle das telas de navegação do site.
+
+index() - Exibe a tela inicial com banner e notícias.
+noticias() - Exibe uma notícia.
+membros() - Exibe uma lista de membros.
+associacao() - Exibe uma descrição sobre a associação.
+projeto() - Exibe uma descrição sobre o projeto.
+eventos() - Exibe os eventos em uma timeline.
+contato() - Exibe um formulário para contato.
+produtos() - Exibe uma lista de produtos de forma paginada.
+download() - Permite o download de arquivos enviados.
+"""
 
 
 def index():
+    """Retorna os banners e as notícias da tela inicial, em ordem decrescente e
+     de forma paginada.
+    """
     pagina = request.args(0, cast=int, default=1)
     itens_por_pagina = 5
     total = db(db.noticias).count()
@@ -26,6 +41,7 @@ def index():
 
 
 def noticias():
+    """Retorna a notícia a ser exibida"""
     permalink = request.args(0, otherwise='/')
     noticia = db.noticias(permalink=permalink)
     if not noticia:
@@ -35,6 +51,7 @@ def noticias():
 
 
 def membros():
+    """Retorna a lista de membros cadastrados em formato de uma matriz N x 3."""
     membros = db(db.membros).select().as_list()
     if not membros:
         session.flash = T('Desculpe, não existem membros cadastrados ainda')
@@ -54,14 +71,20 @@ def membros():
 
 
 def associacao():
+    """Exibe uma descrição sobre a associação."""
     return {}
 
 
 def projeto():
+    """Exibe uma descrição sobre o projeto."""
     return {}
 
 
 def eventos():
+    """Retorna os eventos do ano atual ou do ano solicitado, o ano dos eventos a
+    serem exibidos, uma lista de anos anteriores e uma lista de anos posteriores,
+    para que os eventos possam ser exibidos em tela.
+    """
     parametro_ano = request.args(0, cast=int, default=request.now.year)
     ano_atual = request.now.year
     eventos = db(db.eventos.dia.year() == parametro_ano).select()
@@ -92,6 +115,8 @@ def eventos():
 
 
 def contato():
+    """Retorna um formulário de contato, que se for válido, envia um e-mail de
+    contato para o e-mail definido em appconfig.ini."""
     if form.validate():
         campos = form.vars
         mail.send(
@@ -104,6 +129,7 @@ def contato():
 
 
 def produtos():
+    """Exibe uma lista de produtos de forma paginada, com 9 itens por página."""
     pagina = request.args(0, cast=int, default=1)
     itens_por_pagina = 9
     total = db(db.produtos).count()

@@ -4,7 +4,7 @@ u"""Controlador responsável pelo controle do banner da tela inicial.
 listar() - Retorna os banners de forma paginada.
 altera_estado() - Alterna o estado de uma aba para ativa ou inativa.
 inserir() - Insere um novo banner.
-editar() - Edita um banner modificando seus atributos..
+editar() - Edita um banner modificando seus atributos.
 """
 
 
