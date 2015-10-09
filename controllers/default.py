@@ -47,11 +47,14 @@ def noticias():
     if not noticia:
         session.flash = T('Desculpe, não existem noticias cadastradas ainda')
         redirect('/')
-    return dict(noticia=noticia)
+    return {
+        'noticia': noticia
+    }
 
 
 def membros():
-    """Retorna a lista de membros cadastrados em formato de uma matriz N x 3."""
+    """Retorna a lista de membros cadastrados no formato de uma matriz de
+    dimensões N x 3."""
     membros = db(db.membros).select().as_list()
     if not membros:
         session.flash = T('Desculpe, não existem membros cadastrados ainda')
@@ -81,8 +84,8 @@ def projeto():
 
 
 def eventos():
-    """Retorna os eventos do ano atual ou do ano solicitado, o ano dos eventos a
-    serem exibidos, uma lista de anos anteriores e uma lista de anos posteriores,
+    """Retorna os eventos do ano atual ou do ano solicitado, o ano dos eventos
+    a serem exibidos, uma lista de anos anteriores e outra de anos posteriores,
     para que os eventos possam ser exibidos em tela.
     """
     parametro_ano = request.args(0, cast=int, default=request.now.year)
@@ -125,7 +128,9 @@ def contato():
             message=campos['mensagem'],
             sender=campos['email']
         )
-    return dict(form=form)
+    return {
+        'form': form
+    }
 
 
 def produtos():
@@ -153,7 +158,7 @@ def produtos():
 @cache.action()
 def download():
     """
-    Allow downloading of uploaded files
-    http://..../[app]/default/download/[filename]
+    Permite o download de arquivos enviados.
+    http://.../[app]/default/download/[nomearquivo]
     """
     return response.download(request, db)
